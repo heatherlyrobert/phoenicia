@@ -21,13 +21,13 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5c"
-#define     VER_TXT     "improved key lower case greek characters"
+#define     VER_NUM     "0.5d"
+#define     VER_TXT     "fixed null to show in ncurses"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
  *  bdf   = adobe human-readable bitmap distribution format (latest in 2013)
- *  psf   = 
+ *  psf   = kernel/terminal font
  *
  *  pcf2bdf
  *  bdftopcf
