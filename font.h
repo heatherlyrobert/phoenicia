@@ -21,8 +21,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5a"
-#define     VER_TXT     "created system to manage my font for term/console"
+#define     VER_NUM     "0.5b"
+#define     VER_TXT     "fixed some of the greek letters"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
