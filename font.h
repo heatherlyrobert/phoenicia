@@ -21,8 +21,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5b"
-#define     VER_TXT     "fixed some of the greek letters"
+#define     VER_NUM     "0.5c"
+#define     VER_TXT     "improved key lower case greek characters"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
