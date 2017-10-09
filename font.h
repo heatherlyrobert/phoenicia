@@ -21,8 +21,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5d"
-#define     VER_TXT     "fixed null to show in ncurses"
+#define     VER_NUM     "0.5e"
+#define     VER_TXT     "coordinated shortcuts for all greek lower case letters"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

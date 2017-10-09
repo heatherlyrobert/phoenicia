@@ -50,6 +50,42 @@ char        s_tall [WIDE][TALL] = {
    { NONE, NONE, NONE, TB  , NONE, NONE },
 };
 
+typedef struct cGREEK  tGREEK;
+struct cGREEK {
+   char        upper;
+   char        lower;
+   char        name        [10];
+   char        sound       [ 5];
+   char        abbr;
+   char        order;
+};
+tGREEK    s_greek [30] =  {
+   { 'Ð', 'è', "alpha"    , "a"   , 'A'  ,  0},
+   { 'Ñ', 'é', "beta"     , "b"   , 'B'  ,  0},
+   { 'Ò', 'ê', "gamma"    , "c"   , 'G'  ,  0},
+   { 'Ó', 'ë', "delta"    , "d"   , 'D'  ,  0},
+   { 'Ô', 'ì', "epsilon"  , "e"   , 'E'  ,  0},
+   { 'Õ', 'í', "zeta"     , "z"   , 'Z'  ,  0},
+   { 'Ö', 'î', "eta"      , "e"   , 'H'  ,  0},
+   { '×', 'ï', "theta"    , "th"  , 'Y'  ,  0},
+   { 'Ø', 'ð', "iota"     , "i"   , 'I'  ,  0},
+   { 'Ù', 'ñ', "kappa"    , "k"   , 'K'  ,  0},
+   { 'Ú', 'ò', "lambda"   , "l"   , 'L'  ,  0},
+   { 'Û', 'ó', "mu"       , "m"   , 'M'  ,  0},
+   { 'Ü', 'ô', "nu"       , "n"   , 'N'  ,  0},
+   { 'Ý', 'õ', "xi"       , "x"   , 'X'  ,  0},
+   { 'Þ', 'ö', "omicron"  , "o"   , 'O'  ,  0},
+   { 'ß', '÷', "pi"       , "p"   , 'P'  ,  0},
+   { 'à', 'ø', "rho"      , "r"   , 'R'  ,  0},
+   { 'á', 'ù', "sigma"    , "s"   , 'S'  ,  0},
+   { 'â', 'ú', "tau"      , "t"   , 'T'  ,  0},
+   { 'ã', 'û', "upsilon"  , "u"   , 'U'  ,  0},
+   { 'ä', 'ü', "phi"      , "ph"  , 'F'  ,  0},
+   { 'å', 'ý', "chi"      , "ch"  , 'C'  ,  0},
+   { 'æ', 'þ', "psi"      , "ps"  , 'Q'  ,  0},
+   { 'ç', 'ÿ', "omega"    , "o"   , 'W'  ,  0},
+};
+
 char
 hexify               (int a_num)
 {
@@ -127,5 +163,11 @@ main (void)
    printf ("\n");
    printf ("è é ê ë ï ò ÷ ù ú ü þ ÿ\n");
    printf ("\n");
+   for (i = 0; i < 24; ++i) {
+      printf (" %c %c   %-2s  %c  %s\n",
+            s_greek [i].upper, s_greek [i].lower,
+            s_greek [i].sound, s_greek [i].abbr ,
+            s_greek [i].name);
+   }
    return 0;
 }
