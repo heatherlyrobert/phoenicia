@@ -11,6 +11,7 @@ char        g_charname  [256][30];
 int         g_line      =    0;
 int         g_row       =    0;
 
+int         g_image     [16][10][6];
 
 char
 INPT_begin           (void)
@@ -20,6 +21,9 @@ INPT_begin           (void)
    if (g_file == NULL) {
       return -1;
    }
+   g_char = 0;
+   g_line = 0;
+   g_row  = 0;
    return 0;
 }
 
@@ -61,7 +65,11 @@ INPT_row             (int a_row)
       x_byte = 0;
       for (j = 7; j >= 0; --j) {
          x_val = pow (2, j);
-         if (g_recd [14 + (i * 8) + (7 - j)] == '#') x_byte += x_val;
+         g_image [i][a_row][7 - j] =  ' ';
+         if (g_recd [14 + (i * 8) + (7 - j)] == '#') {
+            x_byte += x_val;
+            g_image [i][a_row][7 - j] = '#';
+         }
       }
       g_bytes [i][a_row] = x_byte;
       /*> printf ("%-7d ", g_bytes [i][a_row]);                                       <*/

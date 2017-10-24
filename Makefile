@@ -8,6 +8,7 @@ BASE    = txt2bdf
 OTHER   = bdf2txt
 PSFT    = txt2psft
 CHARM   = charmap
+ASCII   = txt2ascii
 SHARE   = font_share
 
 DEBUG   = ${BASE}_debug
@@ -42,7 +43,7 @@ STRIP   = @grep -v -e " DEBUG_" -e " yLOG_"
 
 #===[[ EXECUTABLES ]]===================================================================================================================================================#
 
-all                : ${BASE} ${OTHER} ${CHARM} ${PSFT}
+all                : ${BASE} ${OTHER} ${CHARM} ${ASCII} ${PSFT}
 
 ${BASE}            : ${OBJD}
 	${LINK}  -o ${BASE}        ${OBJS}   ${LIBS}
@@ -55,6 +56,9 @@ ${PSFT}            : ${PSFT}.o font_share.os
 
 ${CHARM}           : ${CHARM}.o
 	${LINK}  -o ${CHARM}       ${CHARM}.os   ${LIBS}
+
+${ASCII}           : ${ASCII}.o font_share.os
+	${LINK}  -o ${ASCII}       ${ASCII}.os   font_share.os ${LIBS}
 
 
 
@@ -84,6 +88,11 @@ ${CHARM}.o         : ${HEADS}       ${CHARM}.c
 	${COMP}    ${CHARM}.c                               ${INC}
 	${STRIP}   ${CHARM}.c          > ${CHARM}.cs
 	${COMP}    ${CHARM}.cs        -o ${CHARM}.os        ${INC}
+
+${ASCII}.o         : ${HEADS}       ${ASCII}.c
+	${COMP}    ${ASCII}.c                               ${INC}
+	${STRIP}   ${ASCII}.c          > ${ASCII}.cs
+	${COMP}    ${ASCII}.cs        -o ${ASCII}.os        ${INC}
 
 
 
