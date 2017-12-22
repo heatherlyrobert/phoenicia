@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5h"
-#define     VER_TXT     "fixed a crazy issue making bdf files"
+#define     VER_NUM     "0.5i"
+#define     VER_TXT     "added four sets of new brackets for grouping"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

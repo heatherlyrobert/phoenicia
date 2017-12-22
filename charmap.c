@@ -132,37 +132,43 @@ main (void)
    printf ("({[]})\n");
    printf ("Illegal1 = O0\n");
    printf ("\n");
-   printf ("\n");
-   for (i = 0; i < 16; ++i) {
-      printf ("  ");
-      for (j = 0; j < 16; ++j) {
-         x_val = rand () % 16;
-         printf ("%c", 128 + x_val);
-         x_val = rand () %  8;
-         printf ("%c ", 144 + x_val);
-      }
-      printf ("\n");
-   }
-   printf ("\n");
-   for (i = 0; i < 8; ++i)   printf ("  %c", 152 + i);
-   for (i = 0; i < 7; ++i)   printf ("  %c", 200 + i);
-   for (i = 0; i < 8; ++i)   printf ("  %c", 192 + i);
-   printf ("\n");
-   for (i = 0; i < TALL; ++i) {
-      for (j = 0; j < WIDE; ++j) {
-         printf ("%c", s_wide [i][j]);
-      }
-      printf ("\n");
-   }
-   for (i = 0; i < WIDE; ++i) {
-      for (j = 0; j < TALL; ++j) {
-         printf ("%c", s_tall [i][j]);
-      }
-      printf ("\n");
-   }
-   printf ("\n");
-   printf ("è é ê ë ï ò ÷ ù ú ü þ ÿ\n");
-   printf ("\n");
+   printf ("preÈredÉsuf\n");
+   printf ("preÌredÍsuf\n");
+   printf ("preÊredËsuf\n");
+   printf ("preÂredÃsuf\n");
+   printf ("preÎredÏsuf\n");
+   printf ("preÀredÁsuf\n");
+   /*> printf ("\n");                                                                 <* 
+    *> for (i = 0; i < 16; ++i) {                                                     <* 
+    *>    printf ("  ");                                                              <* 
+    *>    for (j = 0; j < 16; ++j) {                                                  <* 
+    *>       x_val = rand () % 16;                                                    <* 
+    *>       printf ("%c", 128 + x_val);                                              <* 
+    *>       x_val = rand () %  8;                                                    <* 
+    *>       printf ("%c ", 144 + x_val);                                             <* 
+    *>    }                                                                           <* 
+    *>    printf ("\n");                                                              <* 
+    *> }                                                                              <* 
+    *> printf ("\n");                                                                 <* 
+    *> for (i = 0; i < 8; ++i)   printf ("  %c", 152 + i);                            <* 
+    *> for (i = 0; i < 7; ++i)   printf ("  %c", 200 + i);                            <* 
+    *> for (i = 0; i < 8; ++i)   printf ("  %c", 192 + i);                            <* 
+    *> printf ("\n");                                                                 <* 
+    *> for (i = 0; i < TALL; ++i) {                                                   <* 
+    *>    for (j = 0; j < WIDE; ++j) {                                                <* 
+    *>       printf ("%c", s_wide [i][j]);                                            <* 
+    *>    }                                                                           <* 
+    *>    printf ("\n");                                                              <* 
+    *> }                                                                              <* 
+    *> for (i = 0; i < WIDE; ++i) {                                                   <* 
+    *>    for (j = 0; j < TALL; ++j) {                                                <* 
+    *>       printf ("%c", s_tall [i][j]);                                            <* 
+    *>    }                                                                           <* 
+    *>    printf ("\n");                                                              <* 
+    *> }                                                                              <* 
+    *> printf ("\n");                                                                 <* 
+    *> printf ("è é ê ë ï ò ÷ ù ú ü þ ÿ\n");                                          <* 
+    *> printf ("\n");                                                                 <*/
    for (i = 0; i < 24; ++i) {
       printf (" %c %c   %-2s  %c  %s\n",
             s_greek [i].upper, s_greek [i].lower,
