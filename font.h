@@ -13,7 +13,7 @@ extern char        g_charname  [256][30];
 extern int         g_line;
 extern int         g_row;
 
-extern int         g_image     [16][10][6];
+extern int         g_image     [16][10][8];
 
 char        INPT_begin           (void);
 char        INPT_names           (int a_offset);
@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5g"
-#define     VER_TXT     "created font stats program txt2ascii for ascii-art"
+#define     VER_NUM     "0.5h"
+#define     VER_TXT     "fixed a crazy issue making bdf files"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

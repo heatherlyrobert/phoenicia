@@ -11,7 +11,7 @@ char        g_charname  [256][30];
 int         g_line      =    0;
 int         g_row       =    0;
 
-int         g_image     [16][10][6];
+int         g_image     [16][10][8];
 
 char
 INPT_begin           (void)
@@ -46,6 +46,7 @@ INPT_names           (int a_offset)
       strlcpy  (x_name, g_recd + 14 + (i + a_offset) * 8, 16);
       strltrim (x_name, ySTR_BOTH, 2000);
       if (strcmp ("-", x_name) == 0)  sprintf (x_name, "char%d", g_char + i + a_offset);
+      /*> printf ("%-2d  [%s]\n", i + a_offset, x_name);                              <*/
       strlcpy  (g_charname [g_char + i + a_offset], x_name, 16);
    }
    /*> printf ("\n");                                                                 <*/
@@ -60,9 +61,10 @@ INPT_row             (int a_row)
    int         j           = 0;
    int         x_val       = 0;
    int         x_byte      = 0;
+   for (i = 0; i < 16; ++i)  g_bytes [i][a_row] = 0;
    /*> printf ("   -- bytes        :  ");                                             <*/
    for (i = 0; i < 16; ++i) {
-      x_byte = 0;
+      g_bytes [i][a_row] = x_byte = 0;
       for (j = 7; j >= 0; --j) {
          x_val = pow (2, j);
          g_image [i][a_row][7 - j] =  ' ';
@@ -72,7 +74,7 @@ INPT_row             (int a_row)
          }
       }
       g_bytes [i][a_row] = x_byte;
-      /*> printf ("%-7d ", g_bytes [i][a_row]);                                       <*/
+      /*> printf ("%-2d/%-2d:%-4d  ", i, a_row, g_bytes [i][a_row]);                  <*/
    }
    /*> printf ("\n");                                                                 <*/
    return 0;
@@ -98,6 +100,8 @@ INPT_driver          (void)
       }
       x_len = strlen (g_recd);
       g_recd [--x_len] = '\0';
+      /*> printf ("%-2d : [%s]\n", g_row, g_recd);                                    <*/
+      g_recd [--x_len] = '\0';
       if (g_recd [0] == '1') {
          INPT_names (0);
          continue;
@@ -110,6 +114,16 @@ INPT_driver          (void)
          continue;
       }
       INPT_row   (g_row);
+      /*---(display)------------------------*/
+      /*> int i, j;                                                                   <* 
+       *> for (j = 0; j < 10; ++j) {                                                  <* 
+       *>    printf ("%2d :");                                                        <* 
+       *>    for (i = 0; i < 16; ++i) {                                               <* 
+       *>       printf ("  %-4d", g_bytes [i][j]);                                    <* 
+       *>    }                                                                        <* 
+       *>    printf ("\n");                                                           <* 
+       *> }                                                                           <*/
+      /*---(next)---------------------------*/
       ++g_row;
       if (g_row >= 10) {
          g_row = 0;

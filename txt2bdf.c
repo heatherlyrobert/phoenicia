@@ -2,7 +2,7 @@
 
 
 
-#define     BDFVERSION     2.1
+#define     BDFVERSION  2.1
 #define     REGISTRY    ""
 #define     FOUNDRY     "Shrike"
 #define     FAMILY      "Fixed"
@@ -108,10 +108,12 @@ BDF_row              (void)
       printf ("BITMAP\n");
       for (j = 0; j < 10; ++j) {
          x_val = g_bytes [i][j];
+         /*> printf ("%-2d  [", x_val);                                               <*/
          x_byte = x_val / 16;
          printf ("%c", x_hex [x_byte]);
          x_byte = x_val % 16;
          printf ("%c", x_hex [x_byte]);
+         /*> printf ("]");                                                            <*/
          printf ("\n");
       }
       printf ("ENDCHAR\n");
