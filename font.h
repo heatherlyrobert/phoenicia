@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5i"
-#define     VER_TXT     "added four sets of new brackets for grouping"
+#define     VER_NUM     "0.5j"
+#define     VER_TXT     "really cleaned up extended characters"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
