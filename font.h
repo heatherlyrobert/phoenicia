@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5j"
-#define     VER_TXT     "really cleaned up extended characters"
+#define     VER_NUM     "0.5k"
+#define     VER_TXT     "a few more extended characters to fill it out"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
