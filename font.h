@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5k"
-#define     VER_TXT     "a few more extended characters to fill it out"
+#define     VER_NUM     "0.5l"
+#define     VER_TXT     "added delayed backslash and delayed quote symbols"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

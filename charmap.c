@@ -81,12 +81,14 @@ hexify               (int a_num)
 }
 
 int
-main (void)
+main                 (int a_argc, char *a_argv[])
 {
-   int i, j;
+   /*---(locals)-----------+-----+-----+-*/
+   int         i, j;
    char        x_hex       =    0;
    int         x_val       =    0;
-   srand (0);
+   int         x_pos       =    0;
+   /*---(titles)-------------------------*/
    printf ("-", x_hex);
    for (i = 0; i < 16; ++i) {
       if ((i % 4) == 0)  printf  ("    ---");
@@ -94,6 +96,7 @@ main (void)
       printf ("  %c", x_hex);
    }
    printf ("\n");
+   /*---(char table)---------------------*/
    for (i = 0; i < 16; ++i) {
       if ((i % 2) == 0)  printf  ("\n");
       x_hex = hexify (i);
@@ -107,6 +110,7 @@ main (void)
       printf ("\n");
    }
    printf ("\n");
+   /*---(typical similar letters)--------*/
    printf ("0%c%c%c%c%c%c\n", 64, 79, 163, 135, 142, 151);
    printf ("o%c%c%c%c\n", 99, 101, 239, 246);
    printf ("1IiLl|\n");
@@ -116,14 +120,26 @@ main (void)
    printf ("({[]})\n");
    printf ("Illegal1 = O0\n");
    printf ("\n");
-   printf ("preÈredÉsuf   preÌredÍsuf   preÊredËsuf\n");
-   printf ("preÂredÃsuf   preÎredÏsuf   preÀredÁsuf\n");
+   /*---(new brackets)-------------------*/
+   printf ("preÈredÉsuf   preÌredÍsuf   preÊredËsuf   preÎredÏsuf\n");
+   printf ("preÂredÃsuf   preÆredÇsuf   preÀredÁsuf   preÄredÅsuf\n");
    printf ("\n");
-   for (i = 0; i < 24; ++i) {
-      printf (" %c %c   %-2s  %c  %s\n",
-            128 + i, s_greek [i].lower,
-            s_greek [i].sound, s_greek [i].abbr ,
-            s_greek [i].name);
+   /*---(greek table)--------------------*/
+   for (i = 0; i < 12; ++i) {
+      x_pos = i;
+      printf (" %c %c   %-2s  %c  %-10.10s     ",
+            128 + x_pos, s_greek [x_pos].lower,
+            s_greek [x_pos].sound, s_greek [x_pos].abbr ,
+            s_greek [x_pos].name);
+      x_pos = i + 12;
+      printf (" %c %c   %-2s  %c  %-10.10s\n",
+            128 + x_pos, s_greek [x_pos].lower,
+            s_greek [x_pos].sound, s_greek [x_pos].abbr ,
+            s_greek [x_pos].name);
    }
+   printf ("\n");
+   printf ("critical greek : è é ê ë ì ï ò ÷ ù ú ü þ ÿ\n");
+   printf ("\n");
+   /*---(complete)-----------------------*/
    return 0;
 }
