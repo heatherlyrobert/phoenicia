@@ -36,7 +36,6 @@ typedef    unsigned char uchar;
 
 typedef struct cGREEK  tGREEK;
 struct cGREEK {
-   uchar       upper;
    char        lower;
    char        name        [10];
    char        sound       [ 5];
@@ -44,30 +43,30 @@ struct cGREEK {
    char        order;
 };
 tGREEK    s_greek [30] =  {
-   { 'Ð', 'è', "alpha"    , "a"   , 'A'  ,  0},
-   { 'Ñ', 'é', "beta"     , "b"   , 'B'  ,  0},
-   { 'Ò', 'ê', "gamma"    , "c"   , 'G'  ,  0},
-   { 'Ó', 'ë', "delta"    , "d"   , 'D'  ,  0},
-   { 'Ô', 'ì', "epsilon"  , "e"   , 'E'  ,  0},
-   { 'Õ', 'í', "zeta"     , "z"   , 'Z'  ,  0},
-   { 'Ö', 'î', "eta"      , "e"   , 'H'  ,  0},
-   { '×', 'ï', "theta"    , "th"  , 'Q'  ,  0},
-   { 'Ø', 'ð', "iota"     , "i"   , 'I'  ,  0},
-   { 'Ù', 'ñ', "kappa"    , "k"   , 'K'  ,  0},
-   { 'Ú', 'ò', "lambda"   , "l"   , 'L'  ,  0},
-   { 'Û', 'ó', "mu"       , "m"   , 'M'  ,  0},
-   { 'Ü', 'ô', "nu"       , "n"   , 'N'  ,  0},
-   { 'Ý', 'õ', "xi"       , "x"   , 'X'  ,  0},
-   { 'Þ', 'ö', "omicron"  , "o"   , 'O'  ,  0},
-   { 'ß', '÷', "pi"       , "p"   , 'P'  ,  0},
-   { 'à', 'ø', "rho"      , "r"   , 'R'  ,  0},
-   { 'á', 'ù', "sigma"    , "s"   , 'S'  ,  0},
-   { 'â', 'ú', "tau"      , "t"   , 'T'  ,  0},
-   { 'ã', 'û', "upsilon"  , "u"   , 'U'  ,  0},
-   { 'ä', 'ü', "phi"      , "ph"  , 'F'  ,  0},
-   { 'å', 'ý', "chi"      , "ch"  , 'C'  ,  0},
-   { 'æ', 'þ', "psi"      , "ps"  , 'Y'  ,  0},
-   { 'ç', 'ÿ', "omega"    , "o"   , 'W'  ,  0},
+   { 'è', "alpha"    , "a"   , 'A'  ,  0},
+   { 'é', "beta"     , "b"   , 'B'  ,  0},
+   { 'ê', "gamma"    , "c"   , 'G'  ,  0},
+   { 'ë', "delta"    , "d"   , 'D'  ,  0},
+   { 'ì', "epsilon"  , "e"   , 'E'  ,  0},
+   { 'í', "zeta"     , "z"   , 'Z'  ,  0},
+   { 'î', "eta"      , "e"   , 'H'  ,  0},
+   { 'ï', "theta"    , "th"  , 'Q'  ,  0},
+   { 'ð', "iota"     , "i"   , 'I'  ,  0},
+   { 'ñ', "kappa"    , "k"   , 'K'  ,  0},
+   { 'ò', "lambda"   , "l"   , 'L'  ,  0},
+   { 'ó', "mu"       , "m"   , 'M'  ,  0},
+   { 'ô', "nu"       , "n"   , 'N'  ,  0},
+   { 'õ', "xi"       , "x"   , 'X'  ,  0},
+   { 'ö', "omicron"  , "o"   , 'O'  ,  0},
+   { '÷', "pi"       , "p"   , 'P'  ,  0},
+   { 'ø', "rho"      , "r"   , 'R'  ,  0},
+   { 'ù', "sigma"    , "s"   , 'S'  ,  0},
+   { 'ú', "tau"      , "t"   , 'T'  ,  0},
+   { 'û', "upsilon"  , "u"   , 'U'  ,  0},
+   { 'ü', "phi"      , "ph"  , 'F'  ,  0},
+   { 'ý', "chi"      , "ch"  , 'C'  ,  0},
+   { 'þ', "psi"      , "ps"  , 'Y'  ,  0},
+   { 'ÿ', "omega"    , "o"   , 'W'  ,  0},
 };
 
 char
@@ -111,29 +110,29 @@ main                 (int a_argc, char *a_argv[])
    }
    printf ("\n");
    /*---(typical similar letters)--------*/
-   printf ("0%c%c%c%c%c%c\n", 64, 79, 163, 135, 142, 151);
-   printf ("o%c%c%c%c\n", 99, 101, 239, 246);
-   printf ("1IiLl|\n");
-   printf ("E%c%c\n", 132, 145);
+   printf ("0@O£Q\n");
+   printf ("oïÿöc¦");
+   printf ("1IiLl|ð\n");
    printf ("5Ss\n");
-   printf ("2Z%cz\n", 133);
+   printf ("2Zzí\n");
    printf ("({[]})\n");
    printf ("Illegal1 = O0\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
-   printf ("preÈredÉsuf   preÌredÍsuf   preÊredËsuf   preÎredÏsuf\n");
-   printf ("preÂredÃsuf   preÆredÇsuf   preÀredÁsuf   preÄredÅsuf\n");
+   printf ("pre¾red¿suf   preºred»suf   pre­red®suf   preÎredÏsuf\n");
+   printf ("xÇ½yÈ=zÊ      preÆredÌsuf   preÀredÁsuf   preÄredÅsuf\n");
+   printf ("315°f\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {
       x_pos = i;
-      printf (" %c %c   %-2s  %c  %-10.10s     ",
-            128 + x_pos, s_greek [x_pos].lower,
+      printf (" %c   %-2s  %c  %-10.10s     ",
+            s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
             s_greek [x_pos].name);
       x_pos = i + 12;
-      printf (" %c %c   %-2s  %c  %-10.10s\n",
-            128 + x_pos, s_greek [x_pos].lower,
+      printf (" %c   %-2s  %c  %-10.10s\n",
+            s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
             s_greek [x_pos].name);
    }
