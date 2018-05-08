@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5n"
-#define     VER_TXT     "updated some shrike greek symbols"
+#define     VER_NUM     "0.5o"
+#define     VER_TXT     "updated couple extra symbols"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

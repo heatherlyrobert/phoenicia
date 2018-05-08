@@ -112,7 +112,7 @@ main                 (int a_argc, char *a_argv[])
    /*---(typical similar letters)--------*/
    printf ("0@O£Q\n");
    printf ("oïÿöc¦");
-   printf ("1IiLl|ğ\n");
+   printf ("1IiLl!|ğ\n");
    printf ("5Ss\n");
    printf ("2Zzí\n");
    printf ("({[]})\n");
@@ -120,8 +120,8 @@ main                 (int a_argc, char *a_argv[])
    printf ("\n");
    /*---(new brackets)-------------------*/
    printf ("pre¾red¿suf   preºred»suf   pre­red®suf   preÎredÏsuf\n");
-   printf ("xÇ½yÈ=zÊ      preÆredÌsuf   preÀredÁsuf   preÄredÅsuf\n");
-   printf ("315°f\n");
+   printf ("xÇ¯yÈ=zÊ      preÆredÌsuf   preÀredÁsuf   preÄredÅsuf\n");
+   printf ("èÉ¶éË=zÊ  315°  2.461Í  23'49\"  235Æ  ²ABC   ³XYZ  æCD\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {
@@ -136,6 +136,10 @@ main                 (int a_argc, char *a_argv[])
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
             s_greek [x_pos].name);
    }
+   printf ("\n");
+   printf ("all greek      : ");
+   for (i = 0; i < 24; ++i)  printf ("%c", s_greek [i].lower);
+   printf ("\n");
    printf ("\n");
    printf ("critical greek : è é ê ë ì ï ò ÷ ù ú ü ş ÿ\n");
    printf ("\n");
