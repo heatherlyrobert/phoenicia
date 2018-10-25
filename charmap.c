@@ -110,8 +110,8 @@ main                 (int a_argc, char *a_argv[])
    }
    printf ("\n");
    /*---(typical similar letters)--------*/
-   printf ("0@O£Q\n");
-   printf ("oïÿöc¦");
+   printf ("0@O£Qïüÿ\n");
+   printf ("oïÿöcü\n");
    printf ("1IiLl!|ğ\n");
    printf ("5Ss\n");
    printf ("2Zzí\n");
@@ -119,9 +119,11 @@ main                 (int a_argc, char *a_argv[])
    printf ("Illegal1 = O0\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
-   printf ("pre¾red¿suf   preºred»suf   pre­red®suf   preÎredÏsuf\n");
-   printf ("xÇ¯yÈ=zÊ      preÆredÌsuf   preÀredÁsuf   preÄredÅsuf\n");
-   printf ("èÉ¶éË=zÊ  315°  2.461Í  23'49\"  235Æ  ²ABC   ³XYZ  æCD\n");
+   printf ("pre¾red¿suf   preºred»suf   preÂredÃsuf   preÎredÏsuf\n");
+   printf ("xÍ+yÌ=zÊ      èÊ½éË=zË   pĞq   pÑq   pÒq  pÔq  pÓq\n");
+   printf ("315°  2.461¯  23'49\"  235¶  ²ABC   ³XYZ  æCD\n");
+   printf ("\n");
+   printf ("x(t) = (1-t)ÁxÄ + 4t(1-t)ËxÅ + 6tÊ(1-t)ÊxÆ + 4tË(1-t)xÇ + tÁxÈ\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {
