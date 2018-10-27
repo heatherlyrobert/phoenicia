@@ -87,6 +87,7 @@ main                 (int a_argc, char *a_argv[])
    char        x_hex       =    0;
    int         x_val       =    0;
    int         x_pos       =    0;
+   int         x_ch        =    0;
    /*---(titles)-------------------------*/
    printf ("-", x_hex);
    for (i = 0; i < 16; ++i) {
@@ -102,9 +103,10 @@ main                 (int a_argc, char *a_argv[])
       printf ("%c", x_hex);
       for (j = 0; j < 16; ++j) {
          if ((j % 4) == 0)  printf  ("    %03d", (i * 16) + j);
-         if      ((i * 16) + j  <  32)  printf ("  %c", Ï);
-         else if ((i * 16) + j == 127)  printf ("  %c", 189);
-         else printf ("  %c", (i * 16) + j);
+         x_ch = (i * 16) + j;
+         if      (x_ch <   32)                 printf ("  %c", '´');
+         else if (x_ch >= 127 && x_ch <= 160)  printf ("  %c", '´');
+         else                                  printf ("  %c", x_ch);
       }
       printf ("\n");
    }
@@ -120,7 +122,7 @@ main                 (int a_argc, char *a_argv[])
    printf ("\n");
    /*---(new brackets)-------------------*/
    printf ("pre¾red¿suf   preºred»suf   pre¸red¹suf   pre¼red½suf\n");
-   printf ("xÊ+y=zÊ   èÆÏéÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq\n");
+   printf ("xÊ+y=zÊ   èÆ´éÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq\n");
    printf ("315Ì  2.461Í  23'49\"  235Ë  ²ABC   ±XYZ  æCD\n");
    printf ("\n");
    printf ("h = (xÆ + yÆ)Î    and    3.46Ï\n");
