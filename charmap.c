@@ -102,7 +102,7 @@ main                 (int a_argc, char *a_argv[])
       printf ("%c", x_hex);
       for (j = 0; j < 16; ++j) {
          if ((j % 4) == 0)  printf  ("    %03d", (i * 16) + j);
-         if      ((i * 16) + j  <  32)  printf ("  %c", 189);
+         if      ((i * 16) + j  <  32)  printf ("  %c", Ï);
          else if ((i * 16) + j == 127)  printf ("  %c", 189);
          else printf ("  %c", (i * 16) + j);
       }
@@ -119,11 +119,19 @@ main                 (int a_argc, char *a_argv[])
    printf ("Illegal1 = O0\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
-   printf ("pre¾red¿suf   preºred»suf   preÂredÃsuf   preÎredÏsuf\n");
-   printf ("xÍ+yÌ=zÊ      èÊ½éË=zË   pÐq   pÑq   pÒq  pÔq  pÓq\n");
-   printf ("315°  2.461¯  23'49\"  235¶  ²ABC   ³XYZ  æCD\n");
+   printf ("pre¾red¿suf   preºred»suf   pre¸red¹suf   pre¼red½suf\n");
+   printf ("xÊ+y=zÊ   èÆÏéÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq\n");
+   printf ("315Ì  2.461Í  23'49\"  235Ë  ²ABC   ±XYZ  æCD\n");
    printf ("\n");
-   printf ("x(t) = (1-t)ÁxÄ + 4t(1-t)ËxÅ + 6tÊ(1-t)ÊxÆ + 4tË(1-t)xÇ + tÁxÈ\n");
+   printf ("h = (xÆ + yÆ)Î    and    3.46Ï\n");
+   printf ("\n");
+   printf ("bezier curves...\n");
+   printf ("\n");
+   printf ("quad   (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
+   printf ("\n");
+   printf ("cubic  (n=3) : x(t) = (1-t)ÇxÀ + 3t(1-t)ÆxÁ + 3tÆ(1-t)xÂ + tÇxÃ\n");
+   printf ("\n");
+   printf ("higher (n=4) : x(t) = (1-t)ÈxÀ + 4t(1-t)ÇxÁ + 6tÆ(1-t)ÆxÂ + 4tÇ(1-t)xÃ + tÈxÄ\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {

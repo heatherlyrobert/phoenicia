@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5p"
-#define     VER_TXT     "updated for sub-script numbering and better powers"
+#define     VER_NUM     "0.5r"
+#define     VER_TXT     "updates to shrike/charmap, roots and parens"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
