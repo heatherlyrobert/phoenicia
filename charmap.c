@@ -50,7 +50,7 @@ tGREEK    s_greek [30] =  {
    { 'ì', "epsilon"  , "e"   , 'E'  ,  0},
    { 'í', "zeta"     , "z"   , 'Z'  ,  0},
    { 'î', "eta"      , "e"   , 'H'  ,  0},
-   { 'ï', "theta"    , "th"  , 'Q'  ,  0},
+   { 'ï', "theta"    , "th"  , 'Y'  ,  0},
    { 'ð', "iota"     , "i"   , 'I'  ,  0},
    { 'ñ', "kappa"    , "k"   , 'K'  ,  0},
    { 'ò', "lambda"   , "l"   , 'L'  ,  0},
@@ -65,8 +65,20 @@ tGREEK    s_greek [30] =  {
    { 'û', "upsilon"  , "u"   , 'U'  ,  0},
    { 'ü', "phi"      , "ph"  , 'F'  ,  0},
    { 'ý', "chi"      , "ch"  , 'C'  ,  0},
-   { 'þ', "psi"      , "ps"  , 'Y'  ,  0},
+   { 'þ', "psi"      , "ps"  , 'Q'  ,  0},
    { 'ÿ', "omega"    , "o"   , 'W'  ,  0},
+};
+
+
+char   s_rows  [16][20] = {
+   "ctrl" , "ctrl",
+   "punc" , "nums",
+   "upper", "upper",
+   "lower", "lower",
+   "ctrl" , "ctrl",
+   "macro", "group",
+   "math" , "logic",
+   "greek", "greek",
 };
 
 char
@@ -88,8 +100,11 @@ main                 (int a_argc, char *a_argv[])
    int         x_val       =    0;
    int         x_pos       =    0;
    int         x_ch        =    0;
+   char        x_text      [100];
+   /*------------------------------ abcdefghijklmnopqrstuvwxyz"  */
+   char        x_trans     [100] = "¹ ýë°±êî¸ þòóô®÷þ éúº»ÿõï¯";
    /*---(titles)-------------------------*/
-   printf ("-", x_hex);
+   printf ("       -", x_hex);
    for (i = 0; i < 16; ++i) {
       if ((i % 4) == 0)  printf  ("    ---");
       x_hex = hexify (i);
@@ -100,13 +115,15 @@ main                 (int a_argc, char *a_argv[])
    for (i = 0; i < 16; ++i) {
       if ((i % 2) == 0)  printf  ("\n");
       x_hex = hexify (i);
+      if (a_argc > 1 && i >= 8 && i <= 9)  printf ("%5s  ", "tsae");
+      else                                 printf ("%5s  ", s_rows [i]);
       printf ("%c", x_hex);
       for (j = 0; j < 16; ++j) {
          if ((j % 4) == 0)  printf  ("    %03d", (i * 16) + j);
          x_ch = (i * 16) + j;
-         if      (x_ch <   32)                 printf ("  %c", '´');
-         else if (x_ch >= 127 && x_ch <= 160)  printf ("  %c", '´');
-         else                                  printf ("  %c", x_ch);
+         if      (x_ch <   32)                               printf ("  %c", '´');
+         else if (a_argc < 2 && x_ch >= 127 && x_ch <= 160)  printf ("  %c", '´');
+         else                                                printf ("  %c", x_ch);
       }
       printf ("\n");
    }
@@ -121,18 +138,17 @@ main                 (int a_argc, char *a_argv[])
    printf ("Illegal1 = O0\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
-   printf ("pre¾red¿suf   preºred»suf   pre¸red¹suf   pre¼red½suf\n");
-   printf ("xÊ+y=zÊ   èÆ´éÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq\n");
-   printf ("315Ì  2.461Í  23'49\"  235Ë  ²ABC   ±XYZ  æCD\n");
+   printf ("pre¾red¿suf   preºred»suf   pre¸red¹suf   pre¼red½suf  pre°preÏredÏsuf±suf\n");
+   printf ("xÊ+y=zÊ   èÆÏéÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq    p´q\n");
+   printf ("315Ì  2.461Í  23'49\"  235Ë  one·two·thr  one²two²thr  ´··+··+··´··+··+··´\n");
    printf ("\n");
-   printf ("h = (xÆ + yÆ)Î    and    3.46Ï\n");
+   printf ("file storage space =²$g$5²*²g3²+²d7²+²c2²+²$c$4\n");
+   printf ("\n");
+   printf ("h = (xÆ + yÆ)Î\n");
    printf ("\n");
    printf ("bezier curves...\n");
-   printf ("\n");
    printf ("quad   (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
-   printf ("\n");
    printf ("cubic  (n=3) : x(t) = (1-t)ÇxÀ + 3t(1-t)ÆxÁ + 3tÆ(1-t)xÂ + tÇxÃ\n");
-   printf ("\n");
    printf ("higher (n=4) : x(t) = (1-t)ÈxÀ + 4t(1-t)ÇxÁ + 6tÆ(1-t)ÆxÂ + 4tÇ(1-t)xÃ + tÈxÄ\n");
    printf ("\n");
    /*---(greek table)--------------------*/
@@ -154,7 +170,22 @@ main                 (int a_argc, char *a_argv[])
    printf ("\n");
    printf ("\n");
    printf ("critical greek : è é ê ë ì ï ò ÷ ù ú ü þ ÿ\n");
-   printf ("\n");
+   /*---(tsae)---------------------------*/
+   if (a_argc > 1) {
+      printf ("\n");
+      strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);
+      printf ("%s\n", x_text);
+      for (i = 0; i < strlen (x_text); ++i) {
+         if (x_text [i] == ' ')  printf ("·");
+         else                    printf ("%c", x_trans [x_text [i] - 'a']);
+      }
+      printf ("\n");
+      for (i = 0; i < strlen (x_text); ++i) {
+         if (x_text [i] == ' ')  printf ("·");
+         else                    printf ("%c", x_text [i] + 32);
+      }
+      printf ("\n");
+   }
    /*---(complete)-----------------------*/
    return 0;
 }

@@ -22,8 +22,8 @@ int         INPT_driver          (void);
 char        INPT_end             (void);
 
 
-#define     VER_NUM     "0.5s"
-#define     VER_TXT     "updates to shrike/charmap, rearrange and pause char"
+#define     VER_NUM     "0.5t"
+#define     VER_TXT     "better storage char, wtf char, and alpha letter"
 /*
  *
  *  pcf   = x11 font (portable compiled format)
