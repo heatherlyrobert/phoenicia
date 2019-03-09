@@ -144,7 +144,7 @@ main                 (int a_argc, char *a_argv[])
    printf ("\n");
    printf ("file storage space =²$g$5²*²g3²+²d7²+²c2²+²$c$4\n");
    printf ("\n");
-   printf ("h = (xÆ + yÆ)Î\n");
+   printf ("h = (xÆ + yÆ)Î     a Ý b     b Þ c     d ß e\n");
    printf ("\n");
    printf ("bezier curves...\n");
    printf ("quad   (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
@@ -171,21 +171,21 @@ main                 (int a_argc, char *a_argv[])
    printf ("\n");
    printf ("critical greek : è é ê ë ì ï ò ÷ ù ú ü þ ÿ\n");
    /*---(tsae)---------------------------*/
+   printf ("\n");
+   strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);
+   printf ("%s\n", x_text);
+   for (i = 0; i < strlen (x_text); ++i) {
+      if (x_text [i] == ' ')  printf ("·");
+      else                    printf ("%c", x_trans [x_text [i] - 'a']);
+   }
+   printf ("\n");
    if (a_argc > 1) {
-      printf ("\n");
-      strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);
-      printf ("%s\n", x_text);
-      for (i = 0; i < strlen (x_text); ++i) {
-         if (x_text [i] == ' ')  printf ("·");
-         else                    printf ("%c", x_trans [x_text [i] - 'a']);
-      }
-      printf ("\n");
       for (i = 0; i < strlen (x_text); ++i) {
          if (x_text [i] == ' ')  printf ("·");
          else                    printf ("%c", x_text [i] + 32);
       }
-      printf ("\n");
    }
+   printf ("\n");
    /*---(complete)-----------------------*/
    return 0;
 }

@@ -8,8 +8,9 @@ BASE    = txt2bdf
 OTHER   = bdf2txt
 PSFT    = txt2psft
 CHARM   = charmap
-ASCII   = txt2ascii
+SHORT   = txt2vim
 SHARE   = font_share
+YSTR    = txt2ystr
 
 DEBUG   = ${BASE}_debug
 HDIR    = /home/system/watcher.robotic_feedback
@@ -43,7 +44,7 @@ STRIP   = @grep -v -e " DEBUG_" -e " yLOG_"
 
 #===[[ EXECUTABLES ]]===================================================================================================================================================#
 
-all                : ${BASE} ${OTHER} ${CHARM} ${ASCII} ${PSFT}
+all                : ${BASE} ${OTHER} ${CHARM} ${PSFT} ${SHORT} ${YSTR}
 
 ${BASE}            : ${OBJD}
 	${LINK}  -o ${BASE}        ${OBJS}   ${LIBS}
@@ -57,8 +58,11 @@ ${PSFT}            : ${PSFT}.o font_share.os
 ${CHARM}           : ${CHARM}.o
 	${LINK}  -o ${CHARM}       ${CHARM}.os   ${LIBS}
 
-${ASCII}           : ${ASCII}.o font_share.os
-	${LINK}  -o ${ASCII}       ${ASCII}.os   font_share.os ${LIBS}
+${SHORT}           : ${SHORT}.o font_share.os
+	${LINK}  -o ${SHORT}       ${SHORT}.os   font_share.os ${LIBS}
+
+${YSTR}            : ${YSTR}.o font_share.os
+	${LINK}  -o ${YSTR}        ${YSTR}.os    font_share.os ${LIBS}
 
 
 
@@ -89,10 +93,15 @@ ${CHARM}.o         : ${HEADS}       ${CHARM}.c
 	${STRIP}   ${CHARM}.c          > ${CHARM}.cs
 	${COMP}    ${CHARM}.cs        -o ${CHARM}.os        ${INC}
 
-${ASCII}.o         : ${HEADS}       ${ASCII}.c
-	${COMP}    ${ASCII}.c                               ${INC}
-	${STRIP}   ${ASCII}.c          > ${ASCII}.cs
-	${COMP}    ${ASCII}.cs        -o ${ASCII}.os        ${INC}
+${SHORT}.o         : ${HEADS}       ${SHORT}.c
+	${COMP}    ${SHORT}.c                               ${INC}
+	${STRIP}   ${SHORT}.c          > ${SHORT}.cs
+	${COMP}    ${SHORT}.cs        -o ${SHORT}.os        ${INC}
+
+${YSTR}.o          : ${HEADS}       ${YSTR}.c
+	${COMP}    ${YSTR}.c                               ${INC}
+	${STRIP}   ${YSTR}.c           > ${YSTR}.cs
+	${COMP}    ${YSTR}.cs         -o ${YSTR}.os        ${INC}
 
 
 
@@ -152,6 +161,16 @@ install            : ${BASE}
 	chown     root:root  ${IDIR}/${CHARM}
 	chmod     0700       ${IDIR}/${CHARM}
 	@sha1sum  ${CHARM}
+	#---(conversion version)--------------#
+	${COPY}   ${SHORT}   ${IDIR}/
+	chown     root:root  ${IDIR}/${SHORT}
+	chmod     0700       ${IDIR}/${SHORT}
+	@sha1sum  ${SHORT}
+	#---(conversion version)--------------#
+	${COPY}   ${YSTR}    ${IDIR}/
+	chown     root:root  ${IDIR}/${YSTR}
+	chmod     0700       ${IDIR}/${YSTR}
+	@sha1sum  ${YSTR}
 
 
 remove             :

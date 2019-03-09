@@ -2,133 +2,239 @@
 
 
 
+/*---(file)---------------------------*/
 char        g_name      [100]         = "";
 FILE       *g_file      = NULL;
 char        g_recd      [2000];
-int         g_bytes     [16][10];
-int         g_char      =    0;
-char        g_charname  [256][30];
-int         g_line      =    0;
-int         g_row       =    0;
 
-int         g_image     [16][10][8];
+tCH         g_char      [LEN_CHARSET];
+
+/*---(glyph)--------------------------*/
+int         g_map       [16];               /* map 16 glyphs into charset pos */
+
+
+
+
+/*====================------------------------------------====================*/
+/*===----                         file level                           ----===*/
+/*====================------------------------------------====================*/
+static void      o___FILE____________________o (void) {;}
 
 char
-INPT_begin           (void)
+inpt__begin          (void)
 {
-   strlcpy (g_name, "shrike.txt", 100);
+   /*---(locals)-----------+-----+-----+-*/
+   int         i           =    0;
+   int         j           =    0;
+   int         k           =    0;
+   /*---(open)---------------------------*/
+   strlcpy (g_name, FILE_SOURCE, 100);
    g_file = fopen (g_name, "r");
    if (g_file == NULL) {
       return -1;
    }
-   g_char = 0;
-   g_line = 0;
-   g_row  = 0;
+   /*---(initialize g_char)--------------*/
+   for (i = 0; i < 256; ++i) {
+      strcpy (g_char [i].name, "");
+      g_char [i].abbr = '\0';
+      g_char [i].key  = '-';
+      for (j = 0; j < 10; ++j) {
+        g_char [i].bytes [j] = 0;
+        for (k = 0; k < 8; ++k) {
+           g_char [i].image [j][k] = '-';
+        }
+      }
+   }
+   /*---(initialize map)-----------------*/
+   for (i = 0; i < 16; ++i) {
+      g_map [i] = 0;
+   }
+   /*---(complete)-----------------------*/
    return 0;
 }
 
 char
-INPT_end             (void)
+inpt__end            (void)
 {
    fclose (g_file);
    return 0;
 }
 
+
+
+/*====================------------------------------------====================*/
+/*===----                       row handlers                           ----===*/
+/*====================------------------------------------====================*/
+static void      o___HANDLERS________________o (void) {;}
+
 char
-INPT_names           (int a_offset)
+inpt__hex            (void)
+{
+   /*---(locals)-----------+-----+-----+-*/
+   int         i           =    0;
+   char        x_hex       [LEN_LABEL];
+   int         x_pos       =    0;
+   /*> printf ("\n");                                                                 <*/
+   for (i = 0; i < 16; ++i) {
+      x_pos = 0;
+      strlcpy  (x_hex, g_recd + 14 + i * 8,  8);
+      strltrim (x_hex, ySTR_BOTH, LEN_LABEL);
+      sscanf (x_hex, "%x", &x_pos);
+      /*> printf ("%3d ", x_pos);                                                     <*/
+      g_map [i] = x_pos;
+   }
+   /*> printf ("\n");                                                                 <*/
+   return 0;
+}
+
+char
+inpt__names          (int a_offset)
 {
    /*---(locals)-----------+-----+-----+-*/
    int         i           = 0;
    char        x_name      [30];
-   int         x_byte      = 0;
+   int         n           = 0;
+   /*---(walk names)---------------------*/
    /*> printf ("   -- bytes        :  ");                                             <*/
    for (i = 0; i < 16; i += 2) {
+      /*---(get name)--------------------*/
       strlcpy  (x_name, g_recd + 14 + (i + a_offset) * 8, 16);
       strltrim (x_name, ySTR_BOTH, 2000);
-      if (strcmp ("-", x_name) == 0)  sprintf (x_name, "char%d", g_char + i + a_offset);
+      /*---(store it)--------------------*/
+      n = g_map [i + a_offset];
+      if (strcmp ("-", x_name) == 0)  sprintf (x_name, "char%d", n);
       /*> printf ("%-2d  [%s]\n", i + a_offset, x_name);                              <*/
-      strlcpy  (g_charname [g_char + i + a_offset], x_name, 16);
+      strlcpy  (g_char [n].name, x_name, 16);
    }
    /*> printf ("\n");                                                                 <*/
    return 0;
 }
 
 char
-INPT_row             (int a_row)
+inpt__abbr           (void)
 {
    /*---(locals)-----------+-----+-----+-*/
-   int         i           = 0;
-   int         j           = 0;
-   int         x_val       = 0;
-   int         x_byte      = 0;
-   for (i = 0; i < 16; ++i)  g_bytes [i][a_row] = 0;
-   /*> printf ("   -- bytes        :  ");                                             <*/
+   int         i           =    0;
+   int         n           =    0;
+   uchar       x_short     =    0;
+   /*> printf ("%s\n", g_recd);                                                       <*/
    for (i = 0; i < 16; ++i) {
-      g_bytes [i][a_row] = x_byte = 0;
-      for (j = 7; j >= 0; --j) {
-         x_val = pow (2, j);
-         g_image [i][a_row][7 - j] =  ' ';
-         if (g_recd [14 + (i * 8) + (7 - j)] == '#') {
-            x_byte += x_val;
-            g_image [i][a_row][7 - j] = '#';
-         }
+      n = g_map [i];
+      x_short = g_recd [14 + (i * 8)];
+      /*> printf ("%c ", x_short);                                                    <*/
+      switch (x_short) {
+      case 172  : g_char [n].abbr = '\0';     break;
+      default   : g_char [n].abbr = x_short;  break;
       }
-      g_bytes [i][a_row] = x_byte;
-      /*> printf ("%-2d/%-2d:%-4d  ", i, a_row, g_bytes [i][a_row]);                  <*/
+      /*> if (g_char [n].abbr > 0)  printf ("%c ", g_char [n].abbr);                  <* 
+       *> else                      printf ("  ");                                    <*/
+      x_short = g_recd [14 + (i * 8) + 2];
+      if (x_short == (uchar) '´')  g_char [n].key = 'y';
+      /*> printf ("%c ", x_short);                                                    <*/
    }
    /*> printf ("\n");                                                                 <*/
    return 0;
 }
 
-int
-INPT_driver          (void)
+char
+inpt__char           (int a_row)
 {
    /*---(locals)-----------+-----+-----+-*/
-   int         x_len       = 0;
+   int         i           =    0;
+   int         j           =    0;
+   int         x_val       =    0;
+   int         x_byte      =    0;
+   int         n           =    0;
+   /*> printf ("   -- bytes        :  ");                                             <*/
+   for (i = 0; i < 16; ++i) {
+      n = g_map [i];
+      x_byte = 0;
+      for (j = 7; j >= 0; --j) {
+         x_val = pow (2, j);
+         g_char [n].image [a_row][7 - j] =  ' ';
+         if (g_recd [14 + (i * 8) + (7 - j)] == '#') {
+            x_byte += x_val;
+            g_char [n].image [a_row][7 - j] = '#';
+         }
+      }
+      g_char [n].bytes [a_row] = x_byte;
+      /*> printf ("%-2d/%-2d:%-4d  ", i, a_row, g_char [i].bytes [a_row]);                  <*/
+   }
+   /*> printf ("\n");                                                                 <*/
+   return 0;
+}
+
+
+
+/*====================------------------------------------====================*/
+/*===----                       main driver                            ----===*/
+/*====================------------------------------------====================*/
+static void      o___DRIVER__________________o (void) {;}
+
+char
+SHARE_read_all        (void)
+{
+   /*---(locals)-----------+-----+-----+-*/
+   char        rce         =  -10;
+   char        rc          =    0;
+   int         x_len       =    0;
+   int         i, j;
+   int         x_line      =    0;
+   int         x_row       =    0;
    /*---(file open)----------------------*/
+   rc = inpt__begin ();
+   --rce;  if (rc < 0) return rce;
+   /*---(read file)----------------------*/
    while (1) {
+      /*---(read)------------------------*/
       fgets (g_recd, 2000, g_file);
-      if (feof (g_file)) {
-         return -1;
-      }
-      ++g_line;
-      if (g_recd [0] == '\n' || g_recd [0] == '\0' || g_recd [0] == ' ') {
-         continue;
-      }
-      if (g_recd [0] == '#') {
-         continue;
-      }
+      if (feof (g_file)) return -1;
+      ++x_line;
+      /*---(fix)-------------------------*/
       x_len = strlen (g_recd);
+      if (x_len <= 0)  continue;
       g_recd [--x_len] = '\0';
-      /*> printf ("%-2d : [%s]\n", g_row, g_recd);                                    <*/
-      g_recd [--x_len] = '\0';
-      if (g_recd [0] == '1') {
-         INPT_names (0);
-         continue;
+      /*> printf ("%-2d : [%s]\n", x_row, g_recd);                                    <*/
+      /*---(handle)----------------------*/
+      switch (g_recd [0]) {
+      case '#' : case ' ' : case '\n' : case '\0'  :
+         break;
+      case 'h' :
+         inpt__hex  ();
+         x_row = 0;
+         break;
+      case '1' :
+         /*> printf ("found inpt__names (0);\n");                                     <*/
+         inpt__names (0);
+         break;
+      case '2' :
+         /*> printf ("found inpt__names (1);\n");                                     <*/
+         inpt__names (1);
+         break;
+      case 's' :
+         inpt__abbr  ();
+         break;
+      case 'c' :
+         if (x_row <  0)  break;
+         inpt__char (x_row);
+         ++x_row;
+         if (x_row >= 10)   x_row = -1;
+         break;
+      default  :
+         break;
       }
-      if (g_recd [0] == '2') {
-         INPT_names (1);
-         continue;
-      }
-      if (g_recd [0] != 'c') {
-         continue;
-      }
-      INPT_row   (g_row);
-      /*---(display)------------------------*/
-      /*> int i, j;                                                                   <* 
+      /*> /+---(display)---------------------+/                                       <* 
        *> for (j = 0; j < 10; ++j) {                                                  <* 
        *>    printf ("%2d :");                                                        <* 
        *>    for (i = 0; i < 16; ++i) {                                               <* 
-       *>       printf ("  %-4d", g_bytes [i][j]);                                    <* 
+       *>       printf ("  %-4d", g_char [i].bytes [j]);                              <* 
        *>    }                                                                        <* 
        *>    printf ("\n");                                                           <* 
        *> }                                                                           <*/
-      /*---(next)---------------------------*/
-      ++g_row;
-      if (g_row >= 10) {
-         g_row = 0;
-         break;
-      }
+      /*---(done)------------------------*/
    }
+   /*---(file close)---------------------*/
+   rc = inpt__end ();
+   /*---(complete)-----------------------*/
    return 0;
 }
