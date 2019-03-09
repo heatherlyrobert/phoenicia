@@ -53,8 +53,8 @@
 #define     P_CREATED   "2018-10"
 #define     P_DEPENDS   "none"
 
-#define     P_VERNUM    "0.6a"
-#define     P_VERTXT    "added vim and ystr conversions, cleaned up source reading"
+#define     P_VERNUM    "0.6b"
+#define     P_VERTXT    "updated txt2bdf to handle full charset read and new data structure"
 
 
 #include    <stdio.h>

@@ -17,7 +17,6 @@
 #define     RESNUM      75
 #define     SPACING     "C"
 #define     AVGWIDTH    "60"
-/*> #define     CHARSET     "ISO10646"                                                <*/
 #define     CHARSET     "iso8859"
 #define     ENCODING    "1"
 #define     COPYRIGHT   "none"
@@ -80,7 +79,7 @@ BDF_footer           (void)
 }
 
 char
-BDF_row              (void)
+BDF_rows             (void)
 {
    /*---(locals)-----------+-----+-----+-*/
    int         i           = 0;
@@ -92,34 +91,33 @@ BDF_row              (void)
    float       x_res       = 0.0;
    float       x_respx     = 0.0;
    int         x_swidth    =   0;
-   /*> for (i = 0; i < 16; ++i) {                                                               <* 
-    *>    x_pixel =  (float) QUADWIDTH;                                                         <* 
-    *>    x_res   = ((float) RESNUM) / 72.0;                                                    <* 
-    *>    x_respx = x_pixel / x_res;                                                            <* 
-    *>    x_swidth = x_respx * 100;                                                             <* 
-    *>    printf ("STARTCHAR %s\n"   , g_char [g_char].name);                                   <* 
-    *>    printf ("ENCODING %d\n"    , g_char);                                                 <* 
-    *>    /+> printf ("pixels  %8.3f\n" , x_pixel);                                       <+/   <* 
-    *>    /+> printf ("res     %8.3f\n" , x_res);                                         <+/   <* 
-    *>    /+> printf ("px/res  %8.3f\n" , x_respx);                                       <+/   <* 
-    *>    printf ("SWIDTH %d %d\n"   , x_swidth , 0);                                           <* 
-    *>    printf ("DWIDTH %d %d\n"   , QUADWIDTH, 0);                                           <* 
-    *>    printf ("BBX %d %d %d %d\n", QUADWIDTH, WEIGHT, 0, -DESCENT);                         <* 
-    *>    printf ("BITMAP\n");                                                                  <* 
-    *>    for (j = 0; j < 10; ++j) {                                                            <* 
-    *>       x_val = g_char [i].bytes [j];                                                      <* 
-    *>       /+> printf ("%-2d  [", x_val);                                               <+/   <* 
-    *>       x_byte = x_val / 16;                                                               <* 
-    *>       printf ("%c", x_hex [x_byte]);                                                     <* 
-    *>       x_byte = x_val % 16;                                                               <* 
-    *>       printf ("%c", x_hex [x_byte]);                                                     <* 
-    *>       /+> printf ("]");                                                            <+/   <* 
-    *>       printf ("\n");                                                                     <* 
-    *>    }                                                                                     <* 
-    *>    printf ("ENDCHAR\n");                                                                 <* 
-    *>    ++g_char;                                                                             <* 
-    *>    printf ("\n");                                                                        <* 
-    *> }                                                                                        <*/
+   for (i = 0; i < LEN_CHARSET; ++i) {
+      x_pixel =  (float) QUADWIDTH;
+      x_res   = ((float) RESNUM) / 72.0;
+      x_respx = x_pixel / x_res;
+      x_swidth = x_respx * 100;
+      printf ("STARTCHAR %s\n"   , g_char [i].name);
+      printf ("ENCODING %d\n"    , i);
+      /*> printf ("pixels  %8.3f\n" , x_pixel);                                       <*/
+      /*> printf ("res     %8.3f\n" , x_res);                                         <*/
+      /*> printf ("px/res  %8.3f\n" , x_respx);                                       <*/
+      printf ("SWIDTH %d %d\n"   , x_swidth , 0);
+      printf ("DWIDTH %d %d\n"   , QUADWIDTH, 0);
+      printf ("BBX %d %d %d %d\n", QUADWIDTH, WEIGHT, 0, -DESCENT);
+      printf ("BITMAP\n");
+      for (j = 0; j < 10; ++j) {
+         x_val = g_char [i].bytes [j];
+         /*> printf ("%-2d  [", x_val);                                               <*/
+         x_byte = x_val / 16;
+         printf ("%c", x_hex [x_byte]);
+         x_byte = x_val % 16;
+         printf ("%c", x_hex [x_byte]);
+         /*> printf ("]");                                                            <*/
+         printf ("\n");
+      }
+      printf ("ENDCHAR\n");
+      printf ("\n");
+   }
    return 0;
 }
 
@@ -127,19 +125,13 @@ int
 main                 (int a_argc, char *a_argv[])
 {
    /*---(locals)-----------+-----+-----+-*/
-   int         rc          = 0;
-   /*---(file open)----------------------*/
-   /*> rc = INPT_begin ();                                                            <* 
-    *> if (rc < 0) return rc;                                                         <* 
-    *> /+---(read lines)---------------------+/                                       <* 
-    *> BDF_header ();                                                                 <* 
-    *> while (1) {                                                                    <* 
-    *>    rc = INPT_read_all ();                                                      <* 
-    *>    if (rc < 0)  break;                                                         <* 
-    *>    BDF_row ();                                                                 <* 
-    *> }                                                                              <* 
-    *> BDF_footer   ();                                                               <* 
-    *> /+---(file open)----------------------+/                                       <* 
-    *> INPT_end ();                                                                   <*/
+   char        rc          =    0;
+   /*---(read source)--------------------*/
+   rc = SHARE_read_all ();
+   /*---(write out)----------------------*/
+   BDF_header ();
+   BDF_rows   ();
+   BDF_footer   ();
+   /*---(complete)-----------------------*/
    return 0;
 }

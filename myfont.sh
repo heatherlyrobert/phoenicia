@@ -1,6 +1,6 @@
 
 ## start in my_font
-cd /home/system/my_font*/
+cd /home/system/phoenicia*/
 
 ## make the bdf version
 txt2bdf > shrike.bdf
@@ -26,4 +26,5 @@ mkfontscale
 fc-cache -f -v
 
 ## return to my_font
-cd /home/system/my_font*/
+cd /home/system/phoenicia*/
+
