@@ -37,34 +37,57 @@
 /*===[[ HEADER ]]=============================================================*/
 /*345678901-12345678901-123456789-123456789-123456789-123456789-123456789-123456789-123456789-*/
 
-#define     P_FOCUS     "PS (programming support)"
-#define     P_NICHE     "st (string handling)"
-#define     P_PURPOSE   "provide secure and useful string handling capabilities"
+#define     P_FOCUS     "??"
+#define     P_NICHE     "??"
+#define     P_SUBJECT   "my shrike terminal font"
+#define     P_PURPOSE   "design and maintenance of charset and personal font"
 
-#define     P_NAMESAKE  "phoenicia (the phoenicians)"
+#define     P_NAMESAKE  "phoenicia-alfavito (letter-givers)"
 #define     P_HERITAGE  "country that gave greece its modern alphabet"
 #define     P_IMAGERY   "mighty ancient seafaring empire"
+#define     P_REASON    ""
+
+#define     P_ONELINE   P_NAMESAKE " " P_SUBJECT
+
+#define     P_BASENAME  ""
+#define     P_FULLPATH  ""
+#define     P_SUFFIX    ""
+#define     P_CONTENT   ""
 
 #define     P_SYSTEM    "gnu/linux   (powerful, ubiquitous, technical, and hackable)"
 #define     P_LANGUAGE  "ansi-c      (wicked, limitless, universal, and everlasting)"
 #define     P_CODESIZE  "small       (appoximately 1,000 slocl)"
+#define     P_DEPENDS   "none"
 
 #define     P_AUTHOR    "heatherlyrobert"
 #define     P_CREATED   "2018-10"
-#define     P_DEPENDS   "none"
 
-#define     P_VERNUM    "0.6b"
-#define     P_VERTXT    "updated txt2bdf to handle full charset read and new data structure"
+#define     P_VERMAJOR  ""
+#define     P_VERMINOR  ""
+#define     P_VERNUM    "0.6c"
+#define     P_VERTXT    "updated charmap to explain the logic operators"
 
 
 #include    <stdio.h>
+#include    <string.h>
 #include    <math.h>
 #include    <ySTR.h>
 
 
 typedef     unsigned char        uchar;
 
-extern char        g_name      [100];
+extern char        g_name       [100];
+extern char        g_font       [LEN_LABEL];
+extern char        g_pointsz    [LEN_LABEL];
+extern char        g_pixelsz    [LEN_LABEL];
+extern int         g_tall;
+extern int         g_ascent;
+extern int         g_descent;
+extern int         g_upper;
+extern int         g_lower;
+extern int         g_wide;
+extern int         g_space;
+
 extern FILE       *g_file;
 extern char        g_recd      [2000];
 extern int         g_line;
@@ -83,8 +106,11 @@ extern       tCH        g_char     [LEN_CHARSET];
 
 
 char        SHARE_read_all        (void);
+char        share_shrike         (void);
+char        share_square         (void);
 
-#define    FILE_SOURCE    "/home/system/phoenicia.custom_terminal_font/shrike.txt"
+#define    FILE_SHRIKE    "/home/system/phoenicia.custom_terminal_font/shrike.txt"
+#define    FILE_SQUARE    "/home/system/phoenicia.custom_terminal_font/square.txt"
 /*
  *
  *  pcf   = x11 font (portable compiled format)

@@ -12,6 +12,16 @@ tCH         g_char      [LEN_CHARSET];
 /*---(glyph)--------------------------*/
 int         g_map       [16];               /* map 16 glyphs into charset pos */
 
+char        g_font       [LEN_LABEL] = "Shrike";  /* font name                */
+char        g_pointsz    [LEN_LABEL] = "100";     /* full top-to-bottom       */
+char        g_pixelsz    [LEN_LABEL] = "10";      /* full top-to-bottom       */
+int         g_tall                   = 10;        /* full top-to-bottom       */
+int         g_ascent                 =  8;        /* space between letters    */
+int         g_descent                =  2;        /* space between letters    */
+int         g_upper                  =  7;        /* capital ascend           */
+int         g_lower                  =  5;        /* lower ascend             */
+int         g_wide                   =  6;        /* width of characters      */
+int         g_space                  =  2;        /* space between letters    */
 
 
 
@@ -28,7 +38,7 @@ inpt__begin          (void)
    int         j           =    0;
    int         k           =    0;
    /*---(open)---------------------------*/
-   strlcpy (g_name, FILE_SOURCE, 100);
+   /*> strlcpy (g_name, FILE_SHRIKE, 100);                                            <*/
    g_file = fopen (g_name, "r");
    if (g_file == NULL) {
       return -1;
@@ -50,6 +60,40 @@ inpt__begin          (void)
       g_map [i] = 0;
    }
    /*---(complete)-----------------------*/
+   return 0;
+}
+
+char
+share_shrike         (void)
+{
+   strcpy  (g_name, FILE_SHRIKE);
+   sprintf (g_font, "%s", "Shrike");
+   g_tall      = 10;
+   sprintf (g_pointsz , "%d", g_tall * 10);
+   sprintf (g_pixelsz , "%d", g_tall);
+   g_ascent    =  8;
+   g_descent   =  2;
+   g_upper     =  7;
+   g_lower     =  5;
+   g_wide      =  6;
+   g_space     =  2;
+   return 0;
+}
+
+char
+share_square         (void)
+{
+   strcpy  (g_name, FILE_SQUARE);
+   sprintf (g_font, "%s", "Square");
+   g_tall      =  6;
+   sprintf (g_pointsz , "%d", g_tall * 10);
+   sprintf (g_pixelsz , "%d", g_tall);
+   g_ascent    =  5;
+   g_descent   =  1;
+   g_upper     =  5;
+   g_lower     =  3;
+   g_wide      =  6;
+   g_space     =  2;
    return 0;
 }
 
@@ -218,7 +262,7 @@ SHARE_read_all        (void)
          if (x_row <  0)  break;
          inpt__char (x_row);
          ++x_row;
-         if (x_row >= 10)   x_row = -1;
+         if (x_row >= g_tall)   x_row = -1;
          break;
       default  :
          break;

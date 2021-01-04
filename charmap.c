@@ -104,6 +104,10 @@ main                 (int a_argc, char *a_argv[])
    /*------------------------------ abcdefghijklmnopqrstuvwxyz"  */
    char        x_trans     [100] = "¹ ýë°±êî¸ þòóô®÷þ éúº»ÿõï¯";
    /*---(titles)-------------------------*/
+   printf ("#!/usr/local/bin/charmap\n");
+   printf ("#   %s\n", P_ONELINE);
+   printf ("#   %s : %s\n", P_VERNUM, P_VERTXT);
+   printf ("\n");
    printf ("       -", x_hex);
    for (i = 0; i < 16; ++i) {
       if ((i % 4) == 0)  printf  ("    ---");
@@ -129,63 +133,69 @@ main                 (int a_argc, char *a_argv[])
    }
    printf ("\n");
    /*---(typical similar letters)--------*/
-   printf ("0@O£Qïüÿ\n");
-   printf ("oïÿöcü\n");
-   printf ("1IiLl!|ð\n");
-   printf ("5Ss\n");
-   printf ("2Zzí\n");
-   printf ("({[]})\n");
-   printf ("Illegal1 = O0\n");
+   printf ("pÐq  µ&  and             pÕq  µl   if.. then..            pàq  µ_j  union\n");
+   printf ("pÓq  µk  nand            pÖq  µh   requires/needs         páq  µ_k  intersection\n");
+   printf ("pÑq  µ|  or              pçq  µ_o  if and only if         pãq  µ_l  superset\n");
+   printf ("pÒq  µ^  xor             pÚq  µ_p  proves                 pâq  µ_h  subset\n");
+   printf ("pÔq  µj  nor             pÛq  µ_f  forces                 påq  µ=   equivalent\n");
+   printf ("~p       not             pÙq  µ_i  implies                ×p   µ_a  for each\n");
+   printf ("pæq  µ~  appox           pÜq  µ_c  contradicts            päq  µ_m  member of\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
-   printf ("pre¾red¿suf   preºred»suf   pre¸red¹suf   pre¼red½suf  pre°preÏredÏsuf±suf\n");
-   printf ("xÊ+y=zÊ   èÆÏéÈ=zÉ   pÐq    pÑq    pÒq    pÔq    pÓq    p´q\n");
-   printf ("315Ì  2.461Í  23'49\"  235Ë  one·two·thr  one²two²thr  ´··+··+··´··+··+··´\n");
+   printf ("315Ì  2.461Í  23'49\"  235Ë    ´··+··+··´··+··+··´    =·$g$5²*²g3²+²d7²+²c2²+²$c$4\n");
+   printf (" µ0 £  nul    µa 3Ì deg    µr 9Í rad    µ# 4Ë lbs    µ  ² fil    µ! ¡   µ? ¢\n");
    printf ("\n");
-   printf ("file storage space =²$g$5²*²g3²+²d7²+²c2²+²$c$4\n");
-   printf ("\n");
-   printf ("h = (xÆ + yÆ)Î     a Ý b     b Þ c     d ß e\n");
+   printf ("macros  ºls<¦··ls<¦··ls<¦··ls<¦··:0a1¦»\n");
+   printf (" µe ¥ esc     µn ¦ ret     µf § fld     µg ¨ grp     µ* ¬ msk    µp ¤ plc\n");
+   printf (" µq ³ hlt     µ+ © dsp     µ. ª pau     µs · pad     µ' ´ 0.2s   µ@ Ï 1s     µ, « 5s\n");
+   printf (" µ: ® sum     µ% ¯ sys     µ¶ ¶ dqt     µµ µ dbs     µ-  fld   º···» blitz\n");
    printf ("\n");
    printf ("bezier curves...\n");
-   printf ("quad   (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
+   printf ("square (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
    printf ("cubic  (n=3) : x(t) = (1-t)ÇxÀ + 3t(1-t)ÆxÁ + 3tÆ(1-t)xÂ + tÇxÃ\n");
-   printf ("higher (n=4) : x(t) = (1-t)ÈxÀ + 4t(1-t)ÇxÁ + 6tÆ(1-t)ÆxÂ + 4tÇ(1-t)xÃ + tÈxÄ\n");
+   printf ("quad   (n=4) : x(t) = (1-t)ÈxÀ + 4t(1-t)ÇxÁ + 6tÆ(1-t)ÆxÂ + 4tÇ(1-t)xÃ + tÈxÄ\n");
+   printf (" µ1 xÎ  µ2 xÆ  µ3 xÇ  µ4 xÈ  µx xÉ  µy xÊ  µ5 xÀ  µ6 xÁ  µ7 xÂ  µ8 xÃ  µ9 xÄ  µz xÅ\n");
+   printf ("\n");
+   printf ("yREGEX  ¸red|white¹   ºnåm»   (&float)   ºnÞm»   ºn[aeiou]»   ¼[abcde]{3,5}½\n");
+   printf (" µ[ º   µ] »   µ( ¸   µ) ¹   µ{ ¼   µ} ½   µd ¾   µb ¿   µ< Ý   µ> Þ   µ/ ß   µ$ ±\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {
+      if (i == 6)  printf ("\n");
       x_pos = i;
-      printf (" %c   %-2s  %c  %-10.10s     ",
+      printf ("              %c   %-2s  µ%c  %-10.10s          ",
             s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
             s_greek [x_pos].name);
       x_pos = i + 12;
-      printf (" %c   %-2s  %c  %-10.10s\n",
+      printf (" %c   %-2s  µ%c  %-10.10s\n",
             s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
             s_greek [x_pos].name);
    }
    printf ("\n");
-   printf ("all greek      : ");
-   for (i = 0; i < 24; ++i)  printf ("%c", s_greek [i].lower);
-   printf ("\n");
-   printf ("\n");
-   printf ("critical greek : è é ê ë ì ï ò ÷ ù ú ü þ ÿ\n");
+   for (i = 0; i < 24; ++i)  printf ("%c ", s_greek [i].lower);
+   printf ("    ");
+   for (i = 0; i < 24; ++i)  printf ("%c" , s_greek [i].lower);
    /*---(tsae)---------------------------*/
+   /*> printf ("\n");                                                                                            <* 
+    *> strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);   <* 
+    *> printf ("%s\n", x_text);                                                                                  <* 
+    *> for (i = 0; i < strlen (x_text); ++i) {                                                                   <* 
+    *>    if (x_text [i] == ' ')  printf ("·");                                                                  <* 
+    *>    else                    printf ("%c", x_trans [x_text [i] - 'a']);                                     <* 
+    *> }                                                                                                         <* 
+    *> printf ("\n");                                                                                            <* 
+    *> if (a_argc > 1) {                                                                                         <* 
+    *>    for (i = 0; i < strlen (x_text); ++i) {                                                                <* 
+    *>       if (x_text [i] == ' ')  printf ("·");                                                               <* 
+    *>       else                    printf ("%c", x_text [i] + 32);                                             <* 
+    *>    }                                                                                                      <* 
+    *> }                                                                                                         <*/
    printf ("\n");
-   strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);
-   printf ("%s\n", x_text);
-   for (i = 0; i < strlen (x_text); ++i) {
-      if (x_text [i] == ' ')  printf ("·");
-      else                    printf ("%c", x_trans [x_text [i] - 'a']);
-   }
-   printf ("\n");
-   if (a_argc > 1) {
-      for (i = 0; i < strlen (x_text); ++i) {
-         if (x_text [i] == ' ')  printf ("·");
-         else                    printf ("%c", x_text [i] + 32);
-      }
-   }
-   printf ("\n");
+   printf ("# end-of-file.  done, finito, completare, whimper [Ï´···\n");
    /*---(complete)-----------------------*/
    return 0;
 }
+
+
