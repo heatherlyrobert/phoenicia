@@ -40,33 +40,33 @@ struct cGREEK {
    char        name        [10];
    char        sound       [ 5];
    char        abbr;
-   char        order;
+   char        tsae        [ 5];
 };
 tGREEK    s_greek [30] =  {
-   { 'è', "alpha"    , "a"   , 'A'  ,  0},
-   { 'é', "beta"     , "b"   , 'B'  ,  0},
-   { 'ê', "gamma"    , "c"   , 'G'  ,  0},
-   { 'ë', "delta"    , "d"   , 'D'  ,  0},
-   { 'ì', "epsilon"  , "e"   , 'E'  ,  0},
-   { 'í', "zeta"     , "z"   , 'Z'  ,  0},
-   { 'î', "eta"      , "e"   , 'H'  ,  0},
-   { 'ï', "theta"    , "th"  , 'Y'  ,  0},
-   { 'ð', "iota"     , "i"   , 'I'  ,  0},
-   { 'ñ', "kappa"    , "k"   , 'K'  ,  0},
-   { 'ò', "lambda"   , "l"   , 'L'  ,  0},
-   { 'ó', "mu"       , "m"   , 'M'  ,  0},
-   { 'ô', "nu"       , "n"   , 'N'  ,  0},
-   { 'õ', "xi"       , "x"   , 'X'  ,  0},
-   { 'ö', "omicron"  , "o"   , 'O'  ,  0},
-   { '÷', "pi"       , "p"   , 'P'  ,  0},
-   { 'ø', "rho"      , "r"   , 'R'  ,  0},
-   { 'ù', "sigma"    , "s"   , 'S'  ,  0},
-   { 'ú', "tau"      , "t"   , 'T'  ,  0},
-   { 'û', "upsilon"  , "u"   , 'U'  ,  0},
-   { 'ü', "phi"      , "ph"  , 'F'  ,  0},
-   { 'ý', "chi"      , "ch"  , 'C'  ,  0},
-   { 'þ', "psi"      , "ps"  , 'Q'  ,  0},
-   { 'ÿ', "omega"    , "o"   , 'W'  ,  0},
+   { 'è', "alpha"    , "a"   , 'A'  , "-" },
+   { 'é', "beta"     , "b"   , 'B'  , "-" },
+   { 'ê', "gamma"    , "c"   , 'G'  , "g" },
+   { 'ë', "delta"    , "d"   , 'D'  , "d" },
+   { 'ì', "epsilon"  , "e"   , 'E'  , "ts"},
+   { 'í', "zeta"     , "z"   , 'Z'  , "-" },
+   { 'î', "eta"      , "e"   , 'H'  , "h" },
+   { 'ï', "theta"    , "th"  , 'Y'  , "-" },
+   { 'ð', "iota"     , "i"   , 'I'  , "-" },
+   { 'ñ', "kappa"    , "k"   , 'K'  , "k" },
+   { 'ò', "lambda"   , "l"   , 'L'  , "hl"},
+   { 'ó', "mu"       , "m"   , 'M'  , "m" },
+   { 'ô', "nu"       , "n"   , 'N'  , "n" },
+   { 'õ', "xi"       , "x"   , 'X'  , "hy"},
+   { 'ö', "omicron"  , "o"   , 'O'  , "-" },
+   { '÷', "pi"       , "p"   , 'P'  , "-" },
+   { 'ø', "rho"      , "r"   , 'R'  , "pn"},
+   { 'ù', "sigma"    , "s"   , 'S'  , "s" },
+   { 'ú', "tau"      , "t"   , 'T'  , "t" },
+   { 'û', "upsilon"  , "u"   , 'U'  , "-" },
+   { 'ü', "phi"      , "ph"  , 'F'  , "-" },
+   { 'ý', "chi"      , "ch"  , 'C'  , "c" },
+   { 'þ', "psi"      , "ps"  , 'Q'  , "qu"},
+   { 'ÿ', "omega"    , "o"   , 'W'  , "w" },
 };
 
 
@@ -97,18 +97,15 @@ main                 (int a_argc, char *a_argv[])
    /*---(locals)-----------+-----+-----+-*/
    int         i, j;
    char        x_hex       =    0;
-   int         x_val       =    0;
    int         x_pos       =    0;
    int         x_ch        =    0;
-   char        x_text      [100];
    /*------------------------------ abcdefghijklmnopqrstuvwxyz"  */
-   char        x_trans     [100] = "¹ ýë°±êî¸ þòóô®÷þ éúº»ÿõï¯";
    /*---(titles)-------------------------*/
    printf ("#!/usr/local/bin/charmap\n");
    printf ("#   %s\n", P_ONELINE);
-   printf ("#   %s : %s\n", P_VERNUM, P_VERTXT);
+   /*> printf ("#   %s : %s\n", P_VERNUM, P_VERTXT);                                  <*/
    printf ("\n");
-   printf ("       -", x_hex);
+   printf ("       -");
    for (i = 0; i < 16; ++i) {
       if ((i % 4) == 0)  printf  ("    ---");
       x_hex = hexify (i);
@@ -133,65 +130,63 @@ main                 (int a_argc, char *a_argv[])
    }
    printf ("\n");
    /*---(typical similar letters)--------*/
-   printf ("pÐq  µ&  and             pÕq  µl   if.. then..            pàq  µ_j  union\n");
-   printf ("pÓq  µk  nand            pÖq  µh   requires/needs         páq  µ_k  intersection\n");
-   printf ("pÑq  µ|  or              pçq  µ_o  if and only if         pãq  µ_l  superset\n");
-   printf ("pÒq  µ^  xor             pÚq  µ_p  proves                 pâq  µ_h  subset\n");
-   printf ("pÔq  µj  nor             pÛq  µ_f  forces                 påq  µ=   equivalent\n");
-   printf ("~p       not             pÙq  µ_i  implies                ×p   µ_a  for each\n");
-   printf ("pæq  µ~  appox           pÜq  µ_c  contradicts            päq  µ_m  member of\n");
+   printf (" pÐq  µ&  and      TT -- -- --     pØq  µ_r  unlikely       pàq  µ_u  uniques\n");
+   printf (" pÔq  µk  nand/con -- TF FT FF     pÙq  µ_l  likely         páq  µ_x  there exists\n");
+   printf (" pÑq  µ|  or       TT TF FT --     ê=Ú  µ_i  infinity       pâq  µ_h  subset of\n");
+   printf (" pÒq  µv  xor      -- TF FT --     Ûx(  µ_f  function       päq  µ_m  member of\n");
+   printf (" pÕq  µj  nor      -- -- -- FF     p´q  µ'   product        påq  µ=   equivalent\n");
+   printf (" pÓq  µi  iff/nxor TT -- -- FF     pçq  µu   functor        æp(  µ_a  for each ...\n");
+   printf (" pÖq  µl  if/prove TT -- FT FF     pãq  µo   set math       p×q  µh   contributes back\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
    printf ("315Ì  2.461Í  23'49\"  235Ë    ´··+··+··´··+··+··´    =·$g$5²*²g3²+²d7²+²c2²+²$c$4\n");
-   printf (" µ0 £  nul    µa 3Ì deg    µr 9Í rad    µ# 4Ë lbs    µ  ² fil    µ! ¡   µ? ¢\n");
+   printf (" µ0 £  nul    µa 3Ì deg    µr 9Í rad    µ# 4Ë lbs    µ  ² fil    µ! ¡   µ? ¢   µ$ ±\n");
    printf ("\n");
    printf ("macros  ºls<¦··ls<¦··ls<¦··ls<¦··:0a1¦»\n");
    printf (" µe ¥ esc     µn ¦ ret     µf § fld     µg ¨ grp     µ* ¬ msk    µp ¤ plc\n");
-   printf (" µq ³ hlt     µ+ © dsp     µ. ª pau     µs · pad     µ' ´ 0.2s   µ@ Ï 1s     µ, « 5s\n");
-   printf (" µ: ® sum     µ% ¯ sys     µ¶ ¶ dqt     µµ µ dbs     µ-  fld   º···» blitz\n");
+   printf (" µq ³ hlt     µ+ © dsp     µ. ª pau     µs · pad     µ' ´ 1key   µ@ Ï 5key   µ, « 0.5s\n");
+   printf (" µ: ® sum     µ%% ¯ sys     µ¶ ¶ dqt     µµ µ dbs     µ-  fld   º···» blitz\n");
    printf ("\n");
-   printf ("bezier curves...\n");
-   printf ("square (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
+   printf ("bezier (n=2) : x(t) = (1-t)ÆxÀ + 2t(1-t)xÁ + tÆxÂ\n");
    printf ("cubic  (n=3) : x(t) = (1-t)ÇxÀ + 3t(1-t)ÆxÁ + 3tÆ(1-t)xÂ + tÇxÃ\n");
    printf ("quad   (n=4) : x(t) = (1-t)ÈxÀ + 4t(1-t)ÇxÁ + 6tÆ(1-t)ÆxÂ + 4tÇ(1-t)xÃ + tÈxÄ\n");
    printf (" µ1 xÎ  µ2 xÆ  µ3 xÇ  µ4 xÈ  µx xÉ  µy xÊ  µ5 xÀ  µ6 xÁ  µ7 xÂ  µ8 xÃ  µ9 xÄ  µz xÅ\n");
    printf ("\n");
    printf ("yREGEX  ¸red|white¹   ºnåm»   (&float)   ºnÞm»   ºn[aeiou]»   ¼[abcde]{3,5}½\n");
-   printf (" µ[ º   µ] »   µ( ¸   µ) ¹   µ{ ¼   µ} ½   µd ¾   µb ¿   µ< Ý   µ> Þ   µ/ ß   µ$ ±\n");
+   printf (" µ[ º   µ] »   µ( ¸   µ) ¹   µ{ ¼   µ} ½   µd ¾   µb ¿   µ< Ü   µ> Ý   µ/ Þ   µ~ ß\n");
    printf ("\n");
    /*---(greek table)--------------------*/
    for (i = 0; i < 12; ++i) {
-      if (i == 6)  printf ("\n");
+      /*> if (i == 6)  printf ("\n");                                                 <*/
       x_pos = i;
-      printf ("              %c   %-2s  µ%c  %-10.10s          ",
+      printf ("        %c   %-2s  µ%c  %-7.7s  (%-2s)        ",
             s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
-            s_greek [x_pos].name);
+            s_greek [x_pos].name , s_greek [x_pos].tsae);
       x_pos = i + 12;
-      printf (" %c   %-2s  µ%c  %-10.10s\n",
+      printf (" %c   %-2s  µ%c  %-7.7s  (%-2s)        ",
             s_greek [x_pos].lower,
             s_greek [x_pos].sound, s_greek [x_pos].abbr ,
-            s_greek [x_pos].name);
+            s_greek [x_pos].name , s_greek [x_pos].tsae);
+      switch (i) {
+      case 2  :  printf ("Ç  a");    break;
+      case 3  :  printf ("Æ  e");    break;
+      case 4  :  printf ("È  f");    break;
+      case 5  :  printf ("É  i");    break;
+      case 6  :  printf ("Ê  o");    break;
+      case 7  :  printf ("Ì  u");    break;
+      case 8  :  printf ("Í  v");    break;
+      case 9  :  printf ("·  '");    break;
+      }
+      printf ("\n");
    }
    printf ("\n");
    for (i = 0; i < 24; ++i)  printf ("%c ", s_greek [i].lower);
    printf ("    ");
    for (i = 0; i < 24; ++i)  printf ("%c" , s_greek [i].lower);
-   /*---(tsae)---------------------------*/
-   /*> printf ("\n");                                                                                            <* 
-    *> strlcpy (x_text, "siyowina qaze nihi gaya geyv zuda siyv gohv wenv caqu goya sida tanu wagv kuwf", 80);   <* 
-    *> printf ("%s\n", x_text);                                                                                  <* 
-    *> for (i = 0; i < strlen (x_text); ++i) {                                                                   <* 
-    *>    if (x_text [i] == ' ')  printf ("·");                                                                  <* 
-    *>    else                    printf ("%c", x_trans [x_text [i] - 'a']);                                     <* 
-    *> }                                                                                                         <* 
-    *> printf ("\n");                                                                                            <* 
-    *> if (a_argc > 1) {                                                                                         <* 
-    *>    for (i = 0; i < strlen (x_text); ++i) {                                                                <* 
-    *>       if (x_text [i] == ' ')  printf ("·");                                                               <* 
-    *>       else                    printf ("%c", x_text [i] + 32);                                             <* 
-    *>    }                                                                                                      <* 
-    *> }                                                                                                         <*/
+   printf ("\n");
+   printf ("\n");
+   printf ("   sihyo'wina ùÉõÊ·ÿÉôÇ   kama ñÇóÇ   zetu'nvgf ìÆúÌ·ôÍêÈ   pna'quatse øÇ·þÇìÆ\n");
    printf ("\n");
    printf ("# end-of-file.  done, finito, completare, whimper [Ï´···\n");
    /*---(complete)-----------------------*/

@@ -64,8 +64,8 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "0.6c"
-#define     P_VERTXT    "updated charmap to explain the logic operators"
+#define     P_VERNUM    "0.6d"
+#define     P_VERTXT    "updated logic and math symbols for beauty/completeness"
 
 
 #include    <stdio.h>
