@@ -1,5 +1,23 @@
 /*===============================[[ beg-code ]]===============================*/
 
+/*===============================*/
+/*
+ *  a 8bit character set is valuable as it...
+ *     -- no additional memory required, as it is already built-in
+ *     -- requires no special varables beyond a standard char
+ *     -- available in all text interfaces
+ *     -- requires absolutely zero overhead/libraries
+ *     -- can be implemented even on rudamentary chips
+ *     -- helps me standardize MY important symbols (hard process)
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 /*===[[ HEADER ]]=============================================================*/
 /*
  *   focus         : ((tbd))
@@ -64,8 +82,8 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "0.6d"
-#define     P_VERTXT    "updated logic and math symbols for beauty/completeness"
+#define     P_VERNUM    "0.6e"
+#define     P_VERTXT    "added line drawing short-cuts to charmap"
 
 
 #include    <stdio.h>

@@ -8,6 +8,7 @@ BASE    = txt2bdf
 OTHER   = bdf2txt
 PSFT    = txt2psft
 CHARM   = charmap
+CHAR2   = charmap2
 SHORT   = txt2vim
 SHARE   = font_share
 YSTR    = txt2ystr
@@ -44,7 +45,7 @@ STRIP   = @grep -v -e " DEBUG_" -e " yLOG_"
 
 #===[[ EXECUTABLES ]]===================================================================================================================================================#
 
-all                : ${BASE} ${OTHER} ${CHARM} ${PSFT} ${SHORT} ${YSTR}
+all                : ${BASE} ${OTHER} ${CHARM} ${CHAR2} ${PSFT} ${SHORT} ${YSTR}
 
 ${BASE}            : ${OBJD}
 	${LINK}  -o ${BASE}        ${OBJS}   ${LIBS}
@@ -57,6 +58,9 @@ ${PSFT}            : ${PSFT}.o font_share.os
 
 ${CHARM}           : ${CHARM}.o
 	${LINK}  -o ${CHARM}       ${CHARM}.os   ${LIBS}
+
+${CHAR2}           : ${CHAR2}.o
+	${LINK}  -o ${CHAR2}       ${CHAR2}.os   ${LIBS} -lncurses -ltinfo
 
 ${SHORT}           : ${SHORT}.o font_share.os
 	${LINK}  -o ${SHORT}       ${SHORT}.os   font_share.os ${LIBS}
@@ -93,6 +97,11 @@ ${CHARM}.o         : ${HEADS}       ${CHARM}.c
 	${STRIP}   ${CHARM}.c          > ${CHARM}.cs
 	${COMP}    ${CHARM}.cs        -o ${CHARM}.os        ${INC}
 
+${CHAR2}.o         : ${HEADS}       ${CHAR2}.c
+	${COMP}    ${CHAR2}.c                               ${INC}
+	${STRIP}   ${CHAR2}.c          > ${CHAR2}.cs
+	${COMP}    ${CHAR2}.cs        -o ${CHAR2}.os        ${INC}
+
 ${SHORT}.o         : ${HEADS}       ${SHORT}.c
 	${COMP}    ${SHORT}.c                               ${INC}
 	${STRIP}   ${SHORT}.c          > ${SHORT}.cs
@@ -113,6 +122,7 @@ clean              :
 	${CLEAN} ${BASE}
 	${CLEAN} ${DEBUG}
 	${CLEAN} ${CHARM}
+	${CLEAN} ${CHAR2}
 	${CLEAN} ${PSFT}
 	#---(object and stripped files)-------#
 	${CLEAN} ${BASE}*.o
@@ -126,6 +136,8 @@ clean              :
 	${CLEAN} ${SHARE}*.os
 	${CLEAN} ${CHARM}*.o
 	${CLEAN} ${CHARM}*.os
+	${CLEAN} ${CHAR2}*.o
+	${CLEAN} ${CHAR2}*.os
 	${CLEAN} ${PSFT}*.o
 	${CLEAN} ${PSFT}*.os
 	#---(junk files)----------------------#
@@ -161,6 +173,10 @@ install            : ${BASE}
 	chown     root:root  ${IDIR}/${CHARM}
 	chmod     0700       ${IDIR}/${CHARM}
 	@sha1sum  ${CHARM}
+	${COPY}   ${CHAR2}   ${IDIR}/
+	chown     root:root  ${IDIR}/${CHAR2}
+	chmod     0700       ${IDIR}/${CHAR2}
+	@sha1sum  ${CHAR2}
 	#---(conversion version)--------------#
 	${COPY}   ${SHORT}   ${IDIR}/
 	chown     root:root  ${IDIR}/${SHORT}
