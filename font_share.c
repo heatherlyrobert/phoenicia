@@ -23,6 +23,9 @@ int         g_lower                  =  5;        /* lower ascend             */
 int         g_wide                   =  6;        /* width of characters      */
 int         g_space                  =  2;        /* space between letters    */
 
+int         g_ytall   = 0;
+int         g_ywide   = 0;
+
 
 
 /*====================------------------------------------====================*/
@@ -49,10 +52,16 @@ inpt__begin          (void)
       g_char [i].abbr = '\0';
       g_char [i].key  = '-';
       for (j = 0; j < 10; ++j) {
-        g_char [i].bytes [j] = 0;
-        for (k = 0; k < 8; ++k) {
-           g_char [i].image [j][k] = '-';
-        }
+         g_char [i].bytes [j] = 0;
+         for (k = 0; k < 8; ++k) {
+            g_char [i].image [j][k] = '-';
+         }
+      }
+      for (j = 0; j < g_ytall; ++j) {
+         for (k = 0; k < g_ywide; ++k) {
+            g_char [i].yfont  [j][k] =  0;
+            g_char [i].pretty [j][k] = ' ';
+         }
       }
    }
    /*---(initialize map)-----------------*/
@@ -69,6 +78,7 @@ share_shrike         (void)
    strcpy  (g_name, FILE_SHRIKE);
    sprintf (g_font, "%s", "Shrike");
    g_tall      = 10;
+   g_ytall     = 57;
    sprintf (g_pointsz , "%d", g_tall * 10);
    sprintf (g_pixelsz , "%d", g_tall);
    g_ascent    =  8;
@@ -76,6 +86,7 @@ share_shrike         (void)
    g_upper     =  7;
    g_lower     =  5;
    g_wide      =  6;
+   g_ywide     = 34;
    g_space     =  2;
    return 0;
 }
@@ -208,6 +219,44 @@ inpt__char           (int a_row)
    return 0;
 }
 
+char
+inpt__glyph          (int a_block, int a_row)
+{
+   /*---(locals)-----------+-----+-----+-*/
+   int         i           =    0;
+   int         j           =    0;
+   int         n           =    0;
+   uchar       x_ch        =  ' ';
+   uchar      *x_valid     = "-+:*172%98#@";
+   uchar      *p           = NULL;
+   uchar       v           =    0;
+   float       x_inc       =    0;
+   uchar       x_val       =    0;
+   /*> printf ("   -- bytes        :  ");                                             <*/
+   x_inc = 255 / 13;
+   for (i = 0; i < 16; ++i) {
+      n = a_block * 16 + i;
+      for (j = 0; j < g_ywide; ++j) {
+         /*---(get char)-----------------*/
+         x_ch  = g_recd [4 + i * g_ywide + j];
+         printf ("%c", x_ch);
+         /*---(defaults)-----------------*/
+         g_char [n].yfont  [a_row][j] =  0;
+         g_char [n].pretty [a_row][j] = x_ch;
+         /*---(check char)---------------*/
+         p  = strchr ("-+:*172%98#@", x_ch);
+         if (p == NULL)  continue;
+         /*---(replace)------------------*/
+         v = p - x_valid + 1;
+         x_val = v * x_inc;
+         g_char [n].yfont  [a_row][j] = x_val;
+         /*---(done)---------------------*/
+      }
+   }
+   printf ("\n");
+   return 0;
+}
+
 
 
 /*====================------------------------------------====================*/
@@ -279,6 +328,67 @@ SHARE_read_all        (void)
    }
    /*---(file close)---------------------*/
    rc = inpt__end ();
+   /*---(complete)-----------------------*/
+   return 0;
+}
+
+char
+SHARE_read_yfont      (void)
+{  /*---(design notes)-------------------*/
+   /*
+    *  init happens in SHARE_read_all, and this is second pass at file
+    *
+    */
+   /*---(locals)-----------+-----+-----+-*/
+   char        rce         =  -10;
+   char        rc          =    0;
+   int         x_len       =    0;
+   int         i, j;
+   int         x_line      =    0;
+   int         x_row       =    0;
+   int         x_block     =    0;
+   /*---(file open)----------------------*/
+   g_file = fopen (g_name, "r");
+   if (g_file == NULL) {
+      return -1;
+   }
+   /*---(read file)----------------------*/
+   while (1) {
+      /*---(read)------------------------*/
+      fgets (g_recd, 2000, g_file);
+      if (feof (g_file)) return -1;
+      ++x_line;
+      /*---(fix)-------------------------*/
+      x_len = strlen (g_recd);
+      if (x_len <= 0)  continue;
+      g_recd [--x_len] = '\0';
+      /*> printf ("%-2d : [%s]\n", x_row, g_recd);                                    <*/
+      /*---(handle)----------------------*/
+      switch (g_recd [0]) {
+      case 'y' :
+         if (x_row <  0)  break;
+         inpt__glyph (x_block, x_row);
+         ++x_row;
+         if (x_row >= g_ytall) {
+            x_row = 0;
+            ++x_block;
+         }
+         break;
+      default  :
+         break;
+      }
+      /*> /+---(display)---------------------+/                                       <* 
+       *> for (j = 0; j < 10; ++j) {                                                  <* 
+       *>    printf ("%2d :");                                                        <* 
+       *>    for (i = 0; i < 16; ++i) {                                               <* 
+       *>       printf ("  %-4d", g_char [i].bytes [j]);                              <* 
+       *>    }                                                                        <* 
+       *>    printf ("\n");                                                           <* 
+       *> }                                                                           <*/
+      /*---(done)------------------------*/
+   }
+   /*---(file close)---------------------*/
+   fclose (g_file);
    /*---(complete)-----------------------*/
    return 0;
 }

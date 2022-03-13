@@ -57,7 +57,7 @@
 
 #define     P_FOCUS     "??"
 #define     P_NICHE     "??"
-#define     P_SUBJECT   "my shrike terminal font"
+#define     P_SUBJECT   "my shrike terminal font (6x10)"
 #define     P_PURPOSE   "design and maintenance of charset and personal font"
 
 #define     P_NAMESAKE  "phoenicia-alfavito (letter-givers)"
@@ -82,8 +82,8 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "0.6e"
-#define     P_VERTXT    "added line drawing short-cuts to charmap"
+#define     P_VERNUM    "1.0a"
+#define     P_VERTXT    "added yfont txf generation for shrike font"
 
 
 #include    <stdio.h>
@@ -115,17 +115,20 @@ extern int         g_row;
 typedef     struct      cCH        tCH;
 struct cCH {
    char        name        [LEN_LABEL];
-   int         image       [10][8];
+   uchar       image       [10][8];
    int         bytes       [10];
    char        abbr;
    char        key;
+   uchar       yfont       [59][34];
+   uchar       pretty      [59][34];
 };
 extern       tCH        g_char     [LEN_CHARSET];
 
 
 char        SHARE_read_all        (void);
-char        share_shrike         (void);
-char        share_square         (void);
+char        SHARE_read_yfont      (void);
+char        share_shrike          (void);
+char        share_square          (void);
 
 #define    FILE_SHRIKE    "/home/system/phoenicia.custom_terminal_font/shrike.txt"
 #define    FILE_SQUARE    "/home/system/phoenicia.custom_terminal_font/square.txt"

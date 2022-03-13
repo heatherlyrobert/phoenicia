@@ -129,25 +129,25 @@ main                 (int a_argc, char *a_argv[])
    }
    printf ("\n");
    /*---(typical similar letters)--------*/
-   printf (" p–q  µ&  and       TT -- -- --    pôq  ôq  µ_c  negate/false      €x() µ_f  function\n");
-   printf (" p‘q  µk  nand/con  -- TF FT FF    pÿq  ÿq  µ_u  unlikely        É p†q  µ_e  empty   \n");
-   printf (" p—q  µ|  or        TT TF FT --    pŸq  Ÿq  µ_l  likely         dá põq  µ_d  diamond \n");
-   printf (" p’q  µj  nor       -- -- -- FF    pöq  öq  µ_t  forces/true    eá p≠q  µ_b  dslash  \n");
-   printf (" p“q  µv  xor       -- TF FT --    p‡q      µ_q  equivalent     fá pòq  µ_s  set math\n");
-   printf (" p”q  µi  iff/nxor  TT -- -- FF    p·q      µ_x  there exists    Ñ pèq  µ_o  bullet  \n");
+   printf (" p–q  µ&  and       TT -- -- --    pôq  ôq  µ_c  negate/false    É pèq  µ_o  hole    \n");
+   printf (" p‘q  µk  nand/con  -- TF FT FF    pÿq  ÿq  µ_u  unlikely       dá p†q  µ_e  empty   \n");
+   printf (" p—q  µ|  or        TT TF FT --    pŸq  Ÿq  µ_l  likely         eá põq  µ_d  diamond \n");
+   printf (" p’q  µj  nor       -- -- -- FF    pöq  öq  µ_t  forces/true    fá p`q       halflong\n");
+   printf (" p“q  µv  xor       -- TF FT --    p‡q      µ_q  equivalent      á p≠q  µ_b  dslash  \n");
+   printf (" p”q  µi  iff/nxor  TT -- -- FF    p·q      µ_x  there exists    Ñ pòq  µ_s  set math\n");
    printf (" p÷q  µl  if/prove  TT -- FT FF    p‚q      µ_h  subset of         ‰p() µ_a  for each\n");
-   printf (" p◊q  µh  contributes              p„q      µ_m  member of         ∞q   µ_!  therefore\n");
+   printf (" p◊q  µh  contributes              p„q      µ_m  member of         ∞∞∞  µ_!  redacted\n");
    printf ("\n");
    /*---(new brackets)-------------------*/
    printf ("315Ã  2.461Õ  23'49\"  235À   ¥∑∑¥∑∑+∑∑¥   ¥∑∑¥∑∑œ   =∑$g$5≤*≤g3≤+≤d7≤+≤c2≤+≤$c$4\n");
-   printf (" µ0 £  nul    µa 3Ã deg    µr 9Õ rad    µ# 4À lbs    µ  ≤ fil    µ! °   µ? ¢   µ$ ±\n");
+   printf (" µ0 £  nul    µo 3Ã deg    µr 9Õ rad    µ# 4À lbs    µ  ≤ fil    µ! °   µ? ¢   µ$ ±\n");
    printf ("\n");
    printf ("macros  ∫ls<¶∑∑ls<¶∑∑ls<¶∑∑ls<¶∑∑:0a1¶ª              µ_[ Â       µ_] Ê       µ_r Á\n");
-   printf (" µe • esc     µn ¶ ret     µf ß fld     µg ® grp     µ* ¨ msk    µp § plc\n");
+   printf (" µe • esc     µn ¶ ret     µf ß fld     µg ® grp     µ* ¨ msk    µp § plc       ` 0.1s\n");
    printf (" µq ≥ hlt     µ+ © dsp     µ. ™ pau     µs ∑ pad     µ' ¥ 1key   µ@ œ 5key   µ, ´ 0.5s\n");
    printf (" µ: Æ sum     µ%% Ø sys     µ∂ ∂ dqt     µµ µ dbs     µ-  fld     ∫∑∑∑ª blitz\n");
    printf ("\n");
-   printf ("bezier (n=2) : x(t) = (1-t)∆x¿ + 2t(1-t)x¡ + t∆x¬       µ_i ⁄ infinity\n");
+   printf ("bezier (n=2) : x(t) = (1-t)∆x¿ + 2t(1-t)x¡ + t∆x¬     µ_i ⁄ inf   µ_f  €x()\n");
    printf ("cubic  (n=3) : x(t) = (1-t)«x¿ + 3t(1-t)∆x¡ + 3t∆(1-t)x¬ + t«x√\n");
    printf ("quad   (n=4) : x(t) = (1-t)»x¿ + 4t(1-t)«x¡ + 6t∆(1-t)∆x¬ + 4t«(1-t)x√ + t»xƒ\n");
    printf (" µ1 xŒ  µ2 x∆  µ3 x«  µ4 x»  µx x…  µy x   µ5 x¿  µ6 x¡  µ7 x¬  µ8 x√  µ9 xƒ  µz x≈\n");
@@ -193,6 +193,15 @@ main                 (int a_argc, char *a_argv[])
    printf ("   sihyo'wina ˘…ı ∑ˇ…Ù«   kama Ò«Û«   zetu'nvgf Ï∆˙Ã∑ÙÕÍ»   pna'quatse ¯«∑˛«Ï∆\n");
    printf ("\n");
    printf ("# end-of-file.  done, finito, completare, whimper [œ¥∑∑∑\n");
+   printf ("\n");
+   printf ("base alphabet letter form notes...\n");
+   printf ("   -- i needed maximum clarity in letters, even if strange looking\n");
+   printf ("   -- ? and ! were given strong dots to make clear\n");
+   printf ("   -- i and j were given strong dots to keep i distinct from l and 1\n");
+   printf ("   -- l was made distinct to keep away from 1 and |\n");
+   printf ("   -- t was made distinct (carolingian) help with l\n");
+   printf ("   -- 0 and £ where kept different from O\n");
+   printf ("   -- many greek letters have less common shapes to keep unique\n");
    printf ("\n");
    printf ("line drawing (11 core, 6 doors/waves, 4 ends, 4 mayan teeth, and extra dotted)\n");
    printf ("                           µ_2                                         \n");

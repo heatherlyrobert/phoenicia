@@ -12,6 +12,7 @@ CHAR2   = charmap2
 SHORT   = txt2vim
 SHARE   = font_share
 YSTR    = txt2ystr
+TXF     = txt2txf
 
 DEBUG   = ${BASE}_debug
 HDIR    = /home/system/watcher.robotic_feedback
@@ -45,10 +46,13 @@ STRIP   = @grep -v -e " DEBUG_" -e " yLOG_"
 
 #===[[ EXECUTABLES ]]===================================================================================================================================================#
 
-all                : ${BASE} ${OTHER} ${CHARM} ${CHAR2} ${PSFT} ${SHORT} ${YSTR}
+all                : ${BASE} ${TXF} ${OTHER} ${CHARM} ${CHAR2} ${PSFT} ${SHORT} ${YSTR}
 
 ${BASE}            : ${OBJD}
 	${LINK}  -o ${BASE}        ${OBJS}   ${LIBS}
+
+${TXF}             : ${TXF}.o font_share.o
+	${LINK}  -o ${TXF}       ${TXF}.os  font_share.os  ${LIBS} -lyFONT -lyGLTEX -lGL -lGLU
 
 ${OTHER}           : ${OTHER}.o font_share.os
 	${LINK}  -o ${OTHER}       ${OTHER}.os  font_share.os ${LIBS}
@@ -81,6 +85,11 @@ ${BASE}.o          : ${HEADS}       ${BASE}.c
 	${COMP}    ${BASE}.c                                ${INC}
 	${STRIP}   ${BASE}.c           > ${BASE}.cs
 	${COMP}    ${BASE}.cs         -o ${BASE}.os         ${INC}
+
+${TXF}.o           : ${HEADS}       ${TXF}.c
+	${COMP}    ${TXF}.c                                 ${INC}
+	${STRIP}   ${TXF}.c            > ${TXF}.cs
+	${COMP}    ${TXF}.cs          -o ${TXF}.os          ${INC}
 
 ${OTHER}.o         : ${HEADS}       ${OTHER}.c
 	${COMP}    ${OTHER}.c                               ${INC}
@@ -117,9 +126,10 @@ ${YSTR}.o          : ${HEADS}       ${YSTR}.c
 
 #===[[ SCRIPTS ]]=======================================================================================================================================================#
 
-clean              :
+allclean           :
 	#---(all versions)--------------------#
 	${CLEAN} ${BASE}
+	${CLEAN} ${TXF}
 	${CLEAN} ${DEBUG}
 	${CLEAN} ${CHARM}
 	${CLEAN} ${CHAR2}
@@ -153,6 +163,11 @@ install            : ${BASE}
 	chown     root:root  ${IDIR}/${BASE}
 	chmod     0700       ${IDIR}/${BASE}
 	@sha1sum  ${BASE}
+	#---(production version)--------------#
+	${COPY}   ${TXF}     ${IDIR}/
+	chown     root:root  ${IDIR}/${TXF} 
+	chmod     0700       ${IDIR}/${TXF} 
+	@sha1sum  ${TXF} 
 	#---(conversion version)--------------#
 	${COPY}   ${OTHER}   ${IDIR}/
 	chown     root:root  ${IDIR}/${OTHER}
