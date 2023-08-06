@@ -64,14 +64,14 @@ txf_glyph               (short n, short a_left, short a_topp)
    uchar       c           =  ' ';
    uchar       v           =  ' ';
    /*---(measure all glyphs)-------------*/
-   printf ("\n\ncharacter %c/%3d\n", n, n);
+   /*> printf ("\n\ncharacter %c/%3d\n", n, n);                                       <*/
    for (y = 0; y < g_ftall; ++y) {
       for (x = 0; x < g_fwide; ++x) {
          x_pos = ((a_topp + y) * g_twide) + (a_left + x);
          c = g_char [n].pretty [y][x];
          v = g_char [n].yfont  [y][x];
          g_texmap [x_pos] = v;
-         printf ("  %3dx %3dy    %3d %c %3d    %3dw %5dp\n", x, y, c, c, v, g_twide, x_pos);
+         /*> printf ("  %3dx %3dy    %3d %c %3d    %3dw %5dp\n", x, y, c, c, v, g_twide, x_pos);   <*/
          /*> if (g_char [n].yfont [y][x] == '#') {                                              <* 
           *>    /+> printf ("%c", '°');                                                   <+/   <* 
           *>    printf ("%3dn, %3dx, %3dy, %3dw, %5dp\n", n, x, y, g_twide, x_pos);             <* 
@@ -97,9 +97,9 @@ txf_glyph               (short n, short a_left, short a_topp)
           *> }                                                                                  <*/
          /*---(done)------------------------*/
       }
-      printf ("\n");
+      /*> printf ("\n");                                                              <*/
    }
-   printf ("\n");
+   /*> printf ("\n");                                                                 <*/
    return 0;
 }
 
@@ -112,7 +112,7 @@ txf_draw                (void)
    int         x_pos       =      0;   /* current width                       */
    int         y_pos       =      0;   /* current height                      */
    /*---(header)-------------------------*/
-   DEBUG_TOPS   yLOG_enter   (__FUNCTION__);
+   DEBUG_PROG   yLOG_enter   (__FUNCTION__);
    /*---(initialize)---------------------*/
    DEBUG_INPT   yLOG_value   ("g_fwide"   , g_fwide);
    DEBUG_INPT   yLOG_value   ("g_ftall"   , g_ftall);
@@ -127,7 +127,7 @@ txf_draw                (void)
       }
    }
    /*---(complete)-----------------------*/
-   DEBUG_TOPS   yLOG_exit    (__FUNCTION__);
+   DEBUG_PROG   yLOG_exit    (__FUNCTION__);
    return 0;
 }
 
@@ -138,15 +138,15 @@ main                 (int a_argc, char *a_argv[])
    char        rc          =    0;
    char        x_slot      =    0;
    /*---(read source)--------------------*/
-   printf ("starting\n");
+   /*> printf ("starting\n");                                                         <*/
    yGLTEX_config ();
    share_shrike ();
    rc = SHARE_read_all   ();
    rc = SHARE_read_yfont ();
    /*---(write out)----------------------*/
-   printf ("write header\n");
+   /*> printf ("write header\n");                                                     <*/
    rc = txf_header  (&x_slot);
-   printf ("force index\n");
+   /*> printf ("force index\n");                                                      <*/
    rc    = yFONT_index_force (x_slot, g_gwide, g_gtall);
    DEBUG_GRAF   yLOG_note     ("create texture");
    g_texmap = yFONT_map_force   (x_slot);

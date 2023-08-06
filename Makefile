@@ -126,6 +126,9 @@ ${YSTR}.o          : ${HEADS}       ${YSTR}.c
 
 #===[[ SCRIPTS ]]=======================================================================================================================================================#
 
+vi_edit            :
+	vi -c "call HBUF_on()" -c "call HTAG_on()" font.h ${BASE}.c ${OTHER}.c ${PSFT}.c ${CHARM}.c ${SHORT}.c ${SHARE}.c ${YSTR}.c ${TXF}.c
+
 allclean           :
 	#---(all versions)--------------------#
 	${CLEAN} ${BASE}

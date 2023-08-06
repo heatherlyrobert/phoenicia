@@ -82,8 +82,8 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "1.0a"
-#define     P_VERTXT    "added yfont txf generation for shrike font"
+#define     P_VERNUM    "1.0b"
+#define     P_VERTXT    "included shrike.psf and shrike.psf.gz to help others install"
 
 
 #include    <stdio.h>

@@ -227,8 +227,8 @@ inpt__glyph          (int a_block, int a_row)
    int         j           =    0;
    int         n           =    0;
    uchar       x_ch        =  ' ';
-   uchar      *x_valid     = "-+:*172%98#@";
-   uchar      *p           = NULL;
+   char       *x_valid     = "-+:*172%98#@";
+   char       *p           = NULL;
    uchar       v           =    0;
    float       x_inc       =    0;
    uchar       x_val       =    0;
@@ -239,7 +239,7 @@ inpt__glyph          (int a_block, int a_row)
       for (j = 0; j < g_ywide; ++j) {
          /*---(get char)-----------------*/
          x_ch  = g_recd [4 + i * g_ywide + j];
-         printf ("%c", x_ch);
+         /*> printf ("%c", x_ch);                                                     <*/
          /*---(defaults)-----------------*/
          g_char [n].yfont  [a_row][j] =  0;
          g_char [n].pretty [a_row][j] = x_ch;
@@ -253,7 +253,7 @@ inpt__glyph          (int a_block, int a_row)
          /*---(done)---------------------*/
       }
    }
-   printf ("\n");
+   /*> printf ("\n");                                                                 <*/
    return 0;
 }
 
