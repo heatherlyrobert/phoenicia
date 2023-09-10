@@ -41,7 +41,7 @@ inpt__begin          (void)
    int         j           =    0;
    int         k           =    0;
    /*---(open)---------------------------*/
-   /*> strlcpy (g_name, FILE_SHRIKE, 100);                                            <*/
+   /*> ystrlcpy (g_name, FILE_SHRIKE, 100);                                            <*/
    g_file = fopen (g_name, "r");
    if (g_file == NULL) {
       return -1;
@@ -132,8 +132,8 @@ inpt__hex            (void)
    /*> printf ("\n");                                                                 <*/
    for (i = 0; i < 16; ++i) {
       x_pos = 0;
-      strlcpy  (x_hex, g_recd + 14 + i * 8,  8);
-      strltrim (x_hex, ySTR_BOTH, LEN_LABEL);
+      ystrlcpy  (x_hex, g_recd + 14 + i * 8,  8);
+      ystrltrim (x_hex, ySTR_BOTH, LEN_LABEL);
       sscanf (x_hex, "%x", &x_pos);
       /*> printf ("%3d ", x_pos);                                                     <*/
       g_map [i] = x_pos;
@@ -153,13 +153,13 @@ inpt__names          (int a_offset)
    /*> printf ("   -- bytes        :  ");                                             <*/
    for (i = 0; i < 16; i += 2) {
       /*---(get name)--------------------*/
-      strlcpy  (x_name, g_recd + 14 + (i + a_offset) * 8, 16);
-      strltrim (x_name, ySTR_BOTH, 2000);
+      ystrlcpy  (x_name, g_recd + 14 + (i + a_offset) * 8, 16);
+      ystrltrim (x_name, ySTR_BOTH, 2000);
       /*---(store it)--------------------*/
       n = g_map [i + a_offset];
       if (strcmp ("-", x_name) == 0)  sprintf (x_name, "char%d", n);
       /*> printf ("%-2d  [%s]\n", i + a_offset, x_name);                              <*/
-      strlcpy  (g_char [n].name, x_name, 16);
+      ystrlcpy  (g_char [n].name, x_name, 16);
    }
    /*> printf ("\n");                                                                 <*/
    return 0;

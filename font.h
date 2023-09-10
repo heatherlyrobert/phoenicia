@@ -82,8 +82,8 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "1.0b"
-#define     P_VERTXT    "included shrike.psf and shrike.psf.gz to help others install"
+#define     P_VERNUM    "1.0c"
+#define     P_VERTXT    "fixes due to changed str functions to ¶ystr¶ in ySTR"
 
 
 #include    <stdio.h>
