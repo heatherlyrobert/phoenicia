@@ -45,3 +45,7 @@ fc-cache -f -v
 ## return to my_font
 cd /home/system/phoenicia*/
 
+## create txf version of shrike
+txt2txf
+
+

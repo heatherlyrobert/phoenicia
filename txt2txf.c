@@ -138,15 +138,15 @@ main                 (int a_argc, char *a_argv[])
    char        rc          =    0;
    char        x_slot      =    0;
    /*---(read source)--------------------*/
-   /*> printf ("starting\n");                                                         <*/
+   printf ("starting\n");
    yGLTEX_config ();
    share_shrike ();
    rc = SHARE_read_all   ();
    rc = SHARE_read_yfont ();
    /*---(write out)----------------------*/
-   /*> printf ("write header\n");                                                     <*/
+   printf ("write header\n");
    rc = txf_header  (&x_slot);
-   /*> printf ("force index\n");                                                      <*/
+   printf ("force index\n");
    rc    = yFONT_index_force (x_slot, g_gwide, g_gtall);
    DEBUG_GRAF   yLOG_note     ("create texture");
    g_texmap = yFONT_map_force   (x_slot);
