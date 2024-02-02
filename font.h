@@ -82,14 +82,15 @@
 
 #define     P_VERMAJOR  ""
 #define     P_VERMINOR  ""
-#define     P_VERNUM    "1.0d"
-#define     P_VERTXT    "finished small updates to txf version to match console"
+#define     P_VERNUM    "1.0e"
+#define     P_VERTXT    "added simple analysis of shrike for ascii-art (density/symmetry)"
 
 
 #include    <stdio.h>
 #include    <string.h>
 #include    <math.h>
 #include    <ySTR.h>
+#include    <yURG.h>
 
 
 typedef     unsigned char        uchar;

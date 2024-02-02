@@ -46,7 +46,7 @@ STRIP   = @grep -v -e " DEBUG_" -e " yLOG_"
 
 #===[[ EXECUTABLES ]]===================================================================================================================================================#
 
-all                : ${BASE} ${TXF} ${OTHER} ${CHARM} ${CHAR2} ${PSFT} ${SHORT} ${YSTR}
+all                : ${BASE} ${TXF} ${OTHER} ${CHARM} ${CHAR2} ${PSFT} ${SHORT} ${YSTR} phoenicia
 
 ${BASE}            : ${OBJD}
 	${LINK}  -o ${BASE}        ${OBJS}   ${LIBS}
@@ -71,6 +71,9 @@ ${SHORT}           : ${SHORT}.o font_share.os
 
 ${YSTR}            : ${YSTR}.o font_share.os
 	${LINK}  -o ${YSTR}        ${YSTR}.os    font_share.os ${LIBS}
+
+phoenicia          : phoenicia.o font_share.os
+	${LINK}  -o phoenicia      phoenicia.os    font_share.os ${LIBS}
 
 
 
@@ -121,13 +124,18 @@ ${YSTR}.o          : ${HEADS}       ${YSTR}.c
 	${STRIP}   ${YSTR}.c           > ${YSTR}.cs
 	${COMP}    ${YSTR}.cs         -o ${YSTR}.os        ${INC}
 
+phoenicia.o        : ${HEADS}       phoenicia.c
+	${COMP}    phoenicia.c                               ${INC}
+	${STRIP}   phoenicia.c           > phoenicia.cs
+	${COMP}    phoenicia.cs         -o phoenicia.os        ${INC}
+
 
 
 
 #===[[ SCRIPTS ]]=======================================================================================================================================================#
 
 vi_edit            :
-	vi -c "call HBUF_on()" -c "call HTAG_on()" font.h ${BASE}.c ${OTHER}.c ${PSFT}.c ${CHARM}.c ${SHORT}.c ${SHARE}.c ${YSTR}.c ${TXF}.c
+	vi -c "call HBUF_on()" -c "call HTAG_on()" font.h ${BASE}.c ${OTHER}.c ${PSFT}.c ${CHARM}.c ${SHORT}.c ${SHARE}.c ${YSTR}.c ${TXF}.c phoenicia.c
 
 allclean           :
 	#---(all versions)--------------------#
